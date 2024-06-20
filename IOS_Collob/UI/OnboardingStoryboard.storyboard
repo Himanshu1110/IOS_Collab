@@ -654,8 +654,8 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dWS-55-PwF">
                                         <rect key="frame" x="16" y="563" width="361" height="60"/>
                                         <subviews>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="email" translatesAutoresizingMaskIntoConstraints="NO" id="riT-aC-5yD">
-                                                <rect key="frame" x="8" y="15" width="25" height="25"/>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="email" translatesAutoresizingMaskIntoConstraints="NO" id="riT-aC-5yD">
+                                                <rect key="frame" x="8" y="17.666666666666629" width="25" height="25"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="25" id="WSS-Ny-oTW"/>
                                                     <constraint firstAttribute="height" constant="25" id="yae-Kk-4c5"/>
@@ -687,6 +687,7 @@
                                             <constraint firstAttribute="trailing" secondItem="xI5-3D-mN3" secondAttribute="trailing" constant="8" id="gE7-XO-TGf"/>
                                             <constraint firstItem="IHb-u4-FwA" firstAttribute="centerY" secondItem="dWS-55-PwF" secondAttribute="centerY" id="gqE-Jw-MDY"/>
                                             <constraint firstItem="xI5-3D-mN3" firstAttribute="leading" secondItem="dWS-55-PwF" secondAttribute="leading" constant="8" id="uyI-F1-J2Z"/>
+                                            <constraint firstItem="riT-aC-5yD" firstAttribute="centerY" secondItem="dWS-55-PwF" secondAttribute="centerY" id="vBl-Ms-lvi"/>
                                         </constraints>
                                     </view>
                                 </subviews>
