@@ -64,7 +64,12 @@ class OnboardingViewController: UIViewController {
     
     @IBAction func onNextBtnPressed(_ sender: Any) {
         if currentPage == slides.count - 1{
-            print("Go to the login screen")
+            let controller = self.storyboard?.instantiateViewController(withIdentifier: "LoginNC") as! UINavigationController
+            
+            
+            controller.modalPresentationStyle = .fullScreen
+            controller.modalTransitionStyle = .flipHorizontal
+            present(controller, animated: true)
         }else{
             currentPage += 1
             let indexPath = IndexPath(item: currentPage, section: 0)
@@ -85,7 +90,7 @@ extension OnboardingViewController:  UICollectionViewDataSource, UICollectionVie
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let onboardingCell = OnboardingCollectionView.dequeueReusableCell(withReuseIdentifier: "OnboardingCollectionViewCell", for: indexPath) as! OnboardingCollectionViewCell
         
-        var slide = slides[indexPath.item]
+        let slide = slides[indexPath.item]
         
         onboardingCell.slideImage.image = slide.image
         onboardingCell.lblSlideTitle.text = slide.title
