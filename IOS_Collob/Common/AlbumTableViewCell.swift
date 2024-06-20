@@ -7,12 +7,10 @@
 
 import UIKit
 
-class NewReleaseTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
-
-    
-   // @IBOutlet weak var lbSectionTitle: UILabel!
+class AlbumTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     @IBOutlet weak var NewReleaseCollectionView: UICollectionView!
+    
     var albums = [""]
     var albumNames = [""]
     var albumSingers = [""]
@@ -20,7 +18,6 @@ class NewReleaseTableViewCell: UITableViewCell, UICollectionViewDelegate, UIColl
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
         
         NewReleaseCollectionView.delegate = self
         NewReleaseCollectionView.dataSource = self
@@ -29,7 +26,7 @@ class NewReleaseTableViewCell: UITableViewCell, UICollectionViewDelegate, UIColl
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
-        // Configure the view for the selected state
+        
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -37,7 +34,9 @@ class NewReleaseTableViewCell: UITableViewCell, UICollectionViewDelegate, UIColl
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = NewReleaseCollectionView.dequeueReusableCell(withReuseIdentifier: "NewReleaseCollectionViewCell", for: indexPath) as! NewReleaseCollectionViewCell
+        
+        // Providing the Data Source
+        let cell = NewReleaseCollectionView.dequeueReusableCell(withReuseIdentifier: "AlbumCollectionViewCell", for: indexPath) as! AlbumCollectionViewCell
         
         
         cell.imageAlbum.image = UIImage(named: albums[indexPath.item])

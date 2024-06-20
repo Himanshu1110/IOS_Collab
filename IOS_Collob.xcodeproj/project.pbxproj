@@ -15,7 +15,7 @@
 		C3CA377E2C23FA3D008A3CB8 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3CA377D2C23FA3D008A3CB8 /* HomeViewController.swift */; };
 		C3CA37832C23FC25008A3CB8 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3CA37822C23FC25008A3CB8 /* Extensions.swift */; };
 		C3CA37872C240585008A3CB8 /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3CA37862C240585008A3CB8 /* SearchTableViewCell.swift */; };
-		C3CA37892C2407F9008A3CB8 /* NewReleaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3CA37882C2407F9008A3CB8 /* NewReleaseTableViewCell.swift */; };
+		C3CA37892C2407F9008A3CB8 /* AlbumTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3CA37882C2407F9008A3CB8 /* AlbumTableViewCell.swift */; };
 		C3CA378B2C240BEB008A3CB8 /* NewReleaseCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3CA378A2C240BEB008A3CB8 /* NewReleaseCollectionViewCell.swift */; };
 		C3CA37922C241A13008A3CB8 /* TopSingerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3CA37912C241A13008A3CB8 /* TopSingerTableViewCell.swift */; };
 		C3CA37942C242546008A3CB8 /* TopSingerCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3CA37932C242546008A3CB8 /* TopSingerCollectionViewCell.swift */; };
@@ -36,7 +36,7 @@
 		C3CA377D2C23FA3D008A3CB8 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		C3CA37822C23FC25008A3CB8 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		C3CA37862C240585008A3CB8 /* SearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SearchTableViewCell.swift; path = IOS_Collob/Common/SearchTableViewCell.swift; sourceTree = SOURCE_ROOT; };
-		C3CA37882C2407F9008A3CB8 /* NewReleaseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NewReleaseTableViewCell.swift; path = IOS_Collob/Common/NewReleaseTableViewCell.swift; sourceTree = SOURCE_ROOT; };
+		C3CA37882C2407F9008A3CB8 /* AlbumTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AlbumTableViewCell.swift; path = IOS_Collob/Common/AlbumTableViewCell.swift; sourceTree = SOURCE_ROOT; };
 		C3CA378A2C240BEB008A3CB8 /* NewReleaseCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NewReleaseCollectionViewCell.swift; path = IOS_Collob/Common/NewReleaseCollectionViewCell.swift; sourceTree = SOURCE_ROOT; };
 		C3CA37912C241A13008A3CB8 /* TopSingerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TopSingerTableViewCell.swift; path = IOS_Collob/SectionViewXibs/TopSingerTableViewCell.swift; sourceTree = SOURCE_ROOT; };
 		C3CA37932C242546008A3CB8 /* TopSingerCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TopSingerCollectionViewCell.swift; path = IOS_Collob/SectionViewXibs/TopSingerCollectionViewCell.swift; sourceTree = SOURCE_ROOT; };
@@ -160,7 +160,7 @@
 			children = (
 				C3C9B9F32C23FB8600C09A50 /* MusicListTableCell.swift */,
 				C3CA37862C240585008A3CB8 /* SearchTableViewCell.swift */,
-				C3CA37882C2407F9008A3CB8 /* NewReleaseTableViewCell.swift */,
+				C3CA37882C2407F9008A3CB8 /* AlbumTableViewCell.swift */,
 				C3CA37912C241A13008A3CB8 /* TopSingerTableViewCell.swift */,
 			);
 			path = TableViewCell;
@@ -234,7 +234,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				C3D86D0D2C23E6BA00F6D63A /* Assets.xcassets in Resources */,
-				C3D86D102C23E6BA00F6D63A /* Base in Resources */,
 				C3CA377C2C23FA10008A3CB8 /* HomeStoryboard.storyboard in Resources */,
 				C3D86D082C23E6B900F6D63A /* Base in Resources */,
 				C3C9B9F22C23FB3300C09A50 /* LaunchScreen.storyboard in Resources */,
@@ -260,7 +259,7 @@
 				C3CA37942C242546008A3CB8 /* TopSingerCollectionViewCell.swift in Sources */,
 				C3D86D032C23E6B900F6D63A /* SceneDelegate.swift in Sources */,
 				C3CA37872C240585008A3CB8 /* SearchTableViewCell.swift in Sources */,
-				C3CA37892C2407F9008A3CB8 /* NewReleaseTableViewCell.swift in Sources */,
+				C3CA37892C2407F9008A3CB8 /* AlbumTableViewCell.swift in Sources */,
 				C3CA378B2C240BEB008A3CB8 /* NewReleaseCollectionViewCell.swift in Sources */,
 				C3CA37832C23FC25008A3CB8 /* Extensions.swift in Sources */,
 			);
