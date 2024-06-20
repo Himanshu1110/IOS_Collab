@@ -10,6 +10,17 @@ import UIKit
 class OnboardingViewController: UIViewController {
 
     var slides = [OnboardingSlide]()
+    
+    var currentPage = 0 {
+        didSet{
+            pageControl.currentPage = currentPage
+            if currentPage == slides.count - 1 {
+                btnNext.setTitle("Get Started", for: .normal)
+            }else{
+                btnNext.setTitle("Next", for: .normal)
+            }
+        }
+    }
 
     @IBOutlet weak var btnNext: UIButton!
     @IBOutlet weak var pageControl: UIPageControl!
@@ -22,7 +33,7 @@ class OnboardingViewController: UIViewController {
         
         slides = [
             OnboardingSlide(title: "Music on the way", description: "Today's biggest and hottest tracks from across the world music landscape.", image: UIImage(named: "boy-listening-music")!),
-            OnboardingSlide(title: "Music on the way", description: "Today's biggest and hottest tracks from across the world music landscape.", image: UIImage(named: "man-listening-music")!),
+            OnboardingSlide(title: "Rock on your way", description: "Today's biggest and hottest tracks from across the world music landscape.", image: UIImage(named: "man-listening-music")!),
             OnboardingSlide(title: "Music on the way", description: "Today's biggest and hottest tracks from across the world music landscape.", image: UIImage(named: "woman-listening-music")!)
                 ]
     }
@@ -52,7 +63,14 @@ class OnboardingViewController: UIViewController {
     
     
     @IBAction func onNextBtnPressed(_ sender: Any) {
-        
+        if currentPage == slides.count - 1{
+            print("Go to the login screen")
+        }else{
+            currentPage += 1
+            let indexPath = IndexPath(item: currentPage, section: 0)
+            OnboardingCollectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
+        }
+
     }
     
     
@@ -88,13 +106,12 @@ extension OnboardingViewController:  UICollectionViewDataSource, UICollectionVie
         0
     }
     
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        let offSet = scrollView.contentOffset.x
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         let width = scrollView.frame.width
-        let horizontalCenter = width / 2
-
-        pageControl.currentPage = Int(offSet + horizontalCenter) / Int(width)
+        currentPage = Int(scrollView.contentOffset.x / width)
+        
     }
+    
 }
 
 extension UIView {
