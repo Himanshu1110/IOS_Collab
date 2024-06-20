@@ -29,6 +29,8 @@ class LoginViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         
+        print("\nEmail :",UserDefaults.standard.string(forKey: "userEmail") ?? "","\nPassword :",UserDefaults.standard.string(forKey: "userPassword") ?? "")
+        
         for socialView in socialsViews {
             socialView.layer.cornerRadius = socialView.frame.height/2
             socialView.clipsToBounds = true
@@ -37,9 +39,9 @@ class LoginViewController: UIViewController {
     }
     
     func moveToHomeScreen(){
-        let homeScreen = UIStoryboard(name: "HomeStoryboard", bundle: nil).instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController
+        let MainScreen = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "CustomTabbarController") as! CustomTabbarController
         
-        self.navigationController?.pushViewController(homeScreen, animated: true)
+        self.navigationController?.pushViewController(MainScreen, animated: true)
     }
     
 //  MARK: - All IBActions methods
