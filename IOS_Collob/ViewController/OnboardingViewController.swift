@@ -68,7 +68,7 @@ class OnboardingViewController: UIViewController {
             
             
             controller.modalPresentationStyle = .fullScreen
-            controller.modalTransitionStyle = .flipHorizontal
+            controller.modalTransitionStyle = .partialCurl
             present(controller, animated: true)
         }else{
             currentPage += 1

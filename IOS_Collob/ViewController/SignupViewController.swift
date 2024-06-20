@@ -28,7 +28,7 @@ class SignupViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         
         for socialView in socialsViews {
-            socialView.layer.cornerRadius = 14.0
+            socialView.layer.cornerRadius = socialView.frame.height/2
             socialView.clipsToBounds = true
         }
     }

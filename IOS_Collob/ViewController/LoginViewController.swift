@@ -28,16 +28,14 @@ class LoginViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         
         for socialView in socialsViews {
-            socialView.layer.cornerRadius = 14.0
+            socialView.layer.cornerRadius = socialView.frame.height/2
             socialView.clipsToBounds = true
         }
         
     }
     
     func moveToHomeScreen(){
-//        let home = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController
-//
-//        self.navigationController?.pushViewController(home, animated: true)
+        
     }
     
     
