@@ -25,6 +25,12 @@
 		C384219B2C24062900EF458A /* OnboardingSlide.swift in Sources */ = {isa = PBXBuildFile; fileRef = C384219A2C24062900EF458A /* OnboardingSlide.swift */; };
 		C384219D2C24254D00EF458A /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C384219C2C24254D00EF458A /* LoginViewController.swift */; };
 		C384219F2C242B2C00EF458A /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C384219E2C242B2C00EF458A /* SignupViewController.swift */; };
+		C31B2E522C23FAE600D520AE /* UserProfile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C31B2E512C23FAE600D520AE /* UserProfile.storyboard */; };
+		C31B2E542C23FCF400D520AE /* UserProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C31B2E532C23FCF400D520AE /* UserProfileVC.swift */; };
+		C31B2E562C240A2F00D520AE /* UserProfileLikedSongTblCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C31B2E552C240A2F00D520AE /* UserProfileLikedSongTblCell.swift */; };
+		C31B2E582C240D1900D520AE /* LikedSongCvCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C31B2E572C240D1900D520AE /* LikedSongCvCell.swift */; };
+		C31B2E5A2C24157700D520AE /* UserProfilePopularSongTblCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C31B2E592C24157700D520AE /* UserProfilePopularSongTblCell.swift */; };
+		C31B2E5C2C2417B400D520AE /* PopularSongsCvCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C31B2E5B2C2417B400D520AE /* PopularSongsCvCell.swift */; };
 		C3D86D012C23E6B900F6D63A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3D86D002C23E6B900F6D63A /* AppDelegate.swift */; };
 		C3D86D032C23E6B900F6D63A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3D86D022C23E6B900F6D63A /* SceneDelegate.swift */; };
 		C3D86D052C23E6B900F6D63A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3D86D042C23E6B900F6D63A /* ViewController.swift */; };
@@ -52,6 +58,12 @@
 		C384219A2C24062900EF458A /* OnboardingSlide.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = OnboardingSlide.swift; path = IOS_Collob/ViewController/OnboardingSlide.swift; sourceTree = SOURCE_ROOT; };
 		C384219C2C24254D00EF458A /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		C384219E2C242B2C00EF458A /* SignupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
+		C31B2E512C23FAE600D520AE /* UserProfile.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = UserProfile.storyboard; sourceTree = "<group>"; };
+		C31B2E532C23FCF400D520AE /* UserProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileVC.swift; sourceTree = "<group>"; };
+		C31B2E552C240A2F00D520AE /* UserProfileLikedSongTblCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UserProfileLikedSongTblCell.swift; path = IOS_Collob/ViewController/UserProfileLikedSongTblCell.swift; sourceTree = SOURCE_ROOT; };
+		C31B2E572C240D1900D520AE /* LikedSongCvCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LikedSongCvCell.swift; path = IOS_Collob/ViewController/LikedSongCvCell.swift; sourceTree = SOURCE_ROOT; };
+		C31B2E592C24157700D520AE /* UserProfilePopularSongTblCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UserProfilePopularSongTblCell.swift; path = IOS_Collob/ViewController/UserProfilePopularSongTblCell.swift; sourceTree = SOURCE_ROOT; };
+		C31B2E5B2C2417B400D520AE /* PopularSongsCvCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PopularSongsCvCell.swift; path = IOS_Collob/ViewController/PopularSongsCvCell.swift; sourceTree = SOURCE_ROOT; };
 		C3D86CFD2C23E6B900F6D63A /* IOS_Collob.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IOS_Collob.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C3D86D002C23E6B900F6D63A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C3D86D022C23E6B900F6D63A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -126,6 +138,7 @@
 				C310FEDC2C23FA4F000A06D0 /* OnboardingViewController.swift */,
 				C384219C2C24254D00EF458A /* LoginViewController.swift */,
 				C384219E2C242B2C00EF458A /* SignupViewController.swift */,
+				C31B2E532C23FCF400D520AE /* UserProfileVC.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -137,6 +150,7 @@
 				C3C9B9ED2C23F9CC00C09A50 /* MusicPlayeScreen.storyboard */,
 				C3CA377B2C23FA10008A3CB8 /* HomeStoryboard.storyboard */,
 				C310FEDA2C23FA34000A06D0 /* OnboardingStoryboard.storyboard */,
+				C31B2E512C23FAE600D520AE /* UserProfile.storyboard */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -179,6 +193,8 @@
 				C3CA37862C240585008A3CB8 /* SearchTableViewCell.swift */,
 				C3CA37882C2407F9008A3CB8 /* AlbumTableViewCell.swift */,
 				C3CA37912C241A13008A3CB8 /* TopSingerTableViewCell.swift */,
+				C31B2E552C240A2F00D520AE /* UserProfileLikedSongTblCell.swift */,
+				C31B2E592C24157700D520AE /* UserProfilePopularSongTblCell.swift */,
 			);
 			path = TableViewCell;
 			sourceTree = "<group>";
@@ -189,6 +205,8 @@
 				C3CA378A2C240BEB008A3CB8 /* NewReleaseCollectionViewCell.swift */,
 				C3CA37932C242546008A3CB8 /* TopSingerCollectionViewCell.swift */,
 				C310FEDE2C23FDA1000A06D0 /* OnboardingCollectionViewCell.swift */,
+				C31B2E572C240D1900D520AE /* LikedSongCvCell.swift */,
+				C31B2E5B2C2417B400D520AE /* PopularSongsCvCell.swift */,
 			);
 			path = CollectionViewCell;
 			sourceTree = "<group>";
@@ -254,6 +272,8 @@
 				C3D86D0D2C23E6BA00F6D63A /* Assets.xcassets in Resources */,
 				C3CA377C2C23FA10008A3CB8 /* HomeStoryboard.storyboard in Resources */,
 				C310FEDB2C23FA34000A06D0 /* OnboardingStoryboard.storyboard in Resources */,
+				C31B2E522C23FAE600D520AE /* UserProfile.storyboard in Resources */,
+				C3D86D102C23E6BA00F6D63A /* Base in Resources */,
 				C3D86D082C23E6B900F6D63A /* Base in Resources */,
 				C3C9B9F22C23FB3300C09A50 /* LaunchScreen.storyboard in Resources */,
 				C3C9B9EE2C23F9CC00C09A50 /* MusicPlayeScreen.storyboard in Resources */,
@@ -268,7 +288,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				C3CA377E2C23FA3D008A3CB8 /* HomeViewController.swift in Sources */,
+				C31B2E562C240A2F00D520AE /* UserProfileLikedSongTblCell.swift in Sources */,
 				C3D86D0B2C23E6B900F6D63A /* IOS_Collob.xcdatamodeld in Sources */,
+				C31B2E5A2C24157700D520AE /* UserProfilePopularSongTblCell.swift in Sources */,
+				C31B2E582C240D1900D520AE /* LikedSongCvCell.swift in Sources */,
 				C3D86D052C23E6B900F6D63A /* ViewController.swift in Sources */,
 				C3C9B9F42C23FB8600C09A50 /* MusicListTableCell.swift in Sources */,
 				C384219F2C242B2C00EF458A /* SignupViewController.swift in Sources */,
@@ -282,6 +305,9 @@
 				C3CA37922C241A13008A3CB8 /* TopSingerTableViewCell.swift in Sources */,
 				C3D86D012C23E6B900F6D63A /* AppDelegate.swift in Sources */,
 				C3CA37942C242546008A3CB8 /* TopSingerCollectionViewCell.swift in Sources */,
+				C31B2E5C2C2417B400D520AE /* PopularSongsCvCell.swift in Sources */,
+				C3D86D012C23E6B900F6D63A /* AppDelegate.swift in Sources */,
+				C31B2E542C23FCF400D520AE /* UserProfileVC.swift in Sources */,
 				C3D86D032C23E6B900F6D63A /* SceneDelegate.swift in Sources */,
 				C3CA37872C240585008A3CB8 /* SearchTableViewCell.swift in Sources */,
 				C3CA37892C2407F9008A3CB8 /* AlbumTableViewCell.swift in Sources */,
