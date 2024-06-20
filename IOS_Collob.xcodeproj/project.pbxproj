@@ -58,6 +58,7 @@
 		C3D86CFF2C23E6B900F6D63A /* IOS_Collob */ = {
 			isa = PBXGroup;
 			children = (
+				C3D86D1D2C23F73100F6D63A /* Cell */,
 				C3D86D1B2C23E6E800F6D63A /* NetworkManager */,
 				C3D86D1A2C23E6DE00F6D63A /* ViewModal */,
 				C3D86D192C23E6D400F6D63A /* Model */,
@@ -108,6 +109,29 @@
 			children = (
 			);
 			path = NetworkManager;
+			sourceTree = "<group>";
+		};
+		C3D86D1D2C23F73100F6D63A /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				C3D86D1F2C23F74000F6D63A /* CollectionViewCell */,
+				C3D86D1E2C23F73700F6D63A /* TableViewCell */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		C3D86D1E2C23F73700F6D63A /* TableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = TableViewCell;
+			sourceTree = "<group>";
+		};
+		C3D86D1F2C23F74000F6D63A /* CollectionViewCell */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = CollectionViewCell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
