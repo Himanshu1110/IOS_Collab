@@ -135,6 +135,7 @@ class MusicPlayerScreenVC: UIViewController, UITableViewDelegate, UITableViewDat
         }
         player?.play()
         btnPlayButton.setImage(UIImage(named: "pause"), for: UIControl.State.normal)
+     
         
     }
     

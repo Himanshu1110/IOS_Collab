@@ -10,8 +10,8 @@ import UIKit
 class MusicListTableCell: UITableViewCell {
 
     @IBOutlet weak var lblMusicName: UILabel!
-    
     @IBOutlet weak var imgMusicImage: UIImageView!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
