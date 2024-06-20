@@ -25,6 +25,8 @@ class OnboardingViewController: UIViewController {
     @IBOutlet weak var btnNext: UIButton!
     @IBOutlet weak var pageControl: UIPageControl!
     @IBOutlet weak var OnboardingCollectionView: UICollectionView!
+    
+//  MARK: - All view lifecycle methods
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -60,7 +62,7 @@ class OnboardingViewController: UIViewController {
       flowLayout.invalidateLayout()
     }
     
-    
+//  MARK: - All IBActions Methods
     
     @IBAction func onNextBtnPressed(_ sender: Any) {
         if currentPage == slides.count - 1{
@@ -81,6 +83,8 @@ class OnboardingViewController: UIViewController {
     
     
 }
+
+// MARK: - All Extensions
 
 extension OnboardingViewController:  UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

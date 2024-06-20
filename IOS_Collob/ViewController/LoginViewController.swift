@@ -17,6 +17,8 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var emailView: UIView!
     @IBOutlet weak var tfUserPassword: UITextField!
     @IBOutlet weak var tfUserEmail: UITextField!
+    
+//    MARK: - All View Lifecycle methods
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -40,7 +42,7 @@ class LoginViewController: UIViewController {
         self.navigationController?.pushViewController(homeScreen, animated: true)
     }
     
-    
+//  MARK: - All IBActions methods
     @IBAction func onLoginBtnPressed(_ sender: Any) {
         let userEnteredEmail = tfUserEmail.text!
         let userEnteredPassword = tfUserPassword.text!
@@ -97,6 +99,7 @@ class LoginViewController: UIViewController {
 
 }
 
+// MARK: - All Extensions
 
 extension String {
     

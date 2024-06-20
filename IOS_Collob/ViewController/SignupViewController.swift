@@ -18,6 +18,8 @@ class SignupViewController: UIViewController {
     @IBOutlet weak var tfUserPassword: UITextField!
     @IBOutlet weak var tfUserEmail: UITextField!
     @IBOutlet weak var tfUsername: UITextField!
+    
+//    MARK: - All view's lifecycle methods
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -32,6 +34,8 @@ class SignupViewController: UIViewController {
             socialView.clipsToBounds = true
         }
     }
+    
+//    MARK: - All IBActions Methods
     
     
     @IBAction func onRegisterBtnPressed(_ sender: Any) {
@@ -58,6 +62,8 @@ class SignupViewController: UIViewController {
         
     }
     
+//    MARK: - All objc methods
+    
     @objc func keyboardWillShow(notification:NSNotification) {
 
         guard let userInfo = notification.userInfo else { return }
@@ -74,6 +80,8 @@ class SignupViewController: UIViewController {
         let contentInset:UIEdgeInsets = UIEdgeInsets.zero
         scrollView.contentInset = contentInset
     }
+    
+    // MARK: - All void methods
     
     func showAlertBox(title:String, message:String) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
