@@ -53,6 +53,7 @@ class MusicPlayerScreenVC: UIViewController, UITableViewDelegate, UITableViewDat
     override func viewWillAppear(_ animated: Bool) {
         SetAVPlayerForAudio(SelectedMusicIndex: SelectedMusicIndex)
         SetUI()
+//        SldMusicSlider.setThumbImage(UIImage(named: "thumb"), for: .normal)
     }
     
     // MARK: - All IBActions
@@ -120,6 +121,8 @@ class MusicPlayerScreenVC: UIViewController, UITableViewDelegate, UITableViewDat
         let Cell = tableView.dequeueReusableCell(withIdentifier: "MusicListTableCell") as! MusicListTableCell
         
         Cell.lblMusicName.text = MusicArr[indexPath.row]["MusicName"]
+        Cell.imgMusicImage.image = UIImage(named: MusicArr[indexPath.row]["MusicName"] ?? "")
+        Cell.imgMusicImage.layer.cornerRadius = 10
         
         return Cell
     }
@@ -130,6 +133,8 @@ class MusicPlayerScreenVC: UIViewController, UITableViewDelegate, UITableViewDat
             SelectedMusicIndex = indexPath.row
             SetAVPlayerForAudio(SelectedMusicIndex: SelectedMusicIndex)
         }
+        player?.play()
+        btnPlayButton.setImage(UIImage(named: "pause"), for: UIControl.State.normal)
         
     }
     
@@ -165,6 +170,8 @@ class MusicPlayerScreenVC: UIViewController, UITableViewDelegate, UITableViewDat
         let CurrentDuration : CMTime = playerItem.currentTime()
         let CurrentSeconds : Float64 = CMTimeGetSeconds(CurrentDuration)
         lblCurrentTime.text = self.stringFromTimeInterval(interval: CurrentSeconds)
+        
+        imgImageView.image = UIImage(named: MusicArr[SelectedMusicIndex]["MusicName"] ?? "")
         
         // This Will Set Slider Value
         SldMusicSlider.maximumValue = Float(TotalSeconds)
