@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol MovetoScreen{
+    func MoveToDetailScreen(ImageName : String)
+}
+
 class AlbumTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     @IBOutlet weak var NewReleaseCollectionView: UICollectionView!
@@ -15,12 +19,16 @@ class AlbumTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollectio
     var albumNames = [""]
     var albumSingers = [""]
     
+    var delegate : MovetoScreen!
     
     override func awakeFromNib() {
         super.awakeFromNib()
         
         NewReleaseCollectionView.delegate = self
         NewReleaseCollectionView.dataSource = self
+        
+//        var delegate : MovetoScreen!
+    
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -53,6 +61,12 @@ class AlbumTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollectio
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 20
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        delegate?.MoveToDetailScreen(ImageName: albums[indexPath.item] )
+
     }
 
 }

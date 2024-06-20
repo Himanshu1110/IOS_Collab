@@ -7,12 +7,11 @@
 
 import UIKit
 
-class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, MovetoScreen {
 
     @IBOutlet weak var HomeTableView: UITableView!
     
     var gradientLayer: CAGradientLayer!
-    
     
     // MARK: - All Static Data
     var sectionTitles = ["New Release", "Popular", "Top Singer"]
@@ -38,6 +37,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     override func viewWillAppear(_ animated: Bool) {
         setGradientBackground(view: view)
+        
     }
     
     override func viewDidLayoutSubviews() {
@@ -103,12 +103,14 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             return cell
         }else if index == 1{
             let cell = HomeTableView.dequeueReusableCell(withIdentifier: "AlbumTableViewCell", for: indexPath) as! AlbumTableViewCell
+            cell.delegate = self
             cell.albums = newReleasesAlbum
             cell.albumNames = newReleaseAlbumName
             cell.albumSingers = newReleaseAlbumSingers
             return cell
         }else if index == 2{
             let cell = HomeTableView.dequeueReusableCell(withIdentifier: "AlbumTableViewCell", for: indexPath) as! AlbumTableViewCell
+            cell.delegate = self
             cell.albums = popularAlbum
             cell.albumNames = popularAlbumName
             cell.albumSingers = popularAlbumSingers
@@ -136,5 +138,12 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
         
         
+    func MoveToDetailScreen(ImageName: String) {
+        let DetailsScreenObj = UIStoryboard(name: "DetailScreen", bundle: nibBundle).instantiateViewController(withIdentifier: "DetailsScreenVC") as! DetailsScreenVC
+        
+        DetailsScreenObj.imageCover = ImageName
+        
+        self.navigationController?.pushViewController(DetailsScreenObj, animated: true)
+    }
 }
 
