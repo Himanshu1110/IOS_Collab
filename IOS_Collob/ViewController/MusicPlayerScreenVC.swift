@@ -228,5 +228,6 @@ class MusicPlayerScreenVC: UIViewController, UITableViewDelegate, UITableViewDat
         
         VwMusicListMainView.layer.cornerRadius = 10
         VwMusicListMainView.layer.masksToBounds = true
+        
     }
 }
