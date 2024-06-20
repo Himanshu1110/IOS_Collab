@@ -18,11 +18,12 @@ class SearchTableViewCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
 
-
+        //Customize the Search Text Field
         tfSearch.borderStyle = .none
         tfSearch.attributedPlaceholder =
         NSAttributedString(string: " Search here", attributes: [NSAttributedString.Key.foregroundColor : UIColor.lightGray])
 
+        // Customize the Search View
         viewSearch.applyCornerRadius(radius: 20)
         viewSearch.layer.shadowColor = UIColor.lightGray.cgColor
         viewSearch.layer.shadowOpacity = 0.1

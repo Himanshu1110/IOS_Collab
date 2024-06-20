@@ -7,7 +7,7 @@
 
 import UIKit
 
-class NewReleaseCollectionViewCell: UICollectionViewCell {
+class AlbumCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var imageAlbum: UIImageView!
     

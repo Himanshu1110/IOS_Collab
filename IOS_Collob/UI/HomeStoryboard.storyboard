@@ -71,7 +71,7 @@
                                             <outlet property="viewSearch" destination="7HQ-12-lJi" id="00T-mU-AQh"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="NewReleaseTableViewCell" rowHeight="160" id="dBW-vl-AFe" customClass="NewReleaseTableViewCell" customModule="IOS_Collob" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="AlbumTableViewCell" rowHeight="160" id="dBW-vl-AFe" customClass="AlbumTableViewCell" customModule="IOS_Collob" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="112" width="333" height="160"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="dBW-vl-AFe" id="ZvE-Ce-ii4">
@@ -88,7 +88,7 @@
                                                         <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                     </collectionViewFlowLayout>
                                                     <cells>
-                                                        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="NewReleaseCollectionViewCell" id="PWJ-PT-Sw5" customClass="NewReleaseCollectionViewCell" customModule="IOS_Collob" customModuleProvider="target">
+                                                        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="AlbumCollectionViewCell" id="PWJ-PT-Sw5" customClass="AlbumCollectionViewCell" customModule="IOS_Collob" customModuleProvider="target">
                                                             <rect key="frame" x="0.0" y="3.6666666666666665" width="104" height="153"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="w60-b8-JUZ">

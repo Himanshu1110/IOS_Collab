@@ -13,6 +13,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     var gradientLayer: CAGradientLayer!
     
+    
+    // MARK: - All Static Data
     var sectionTitles = ["New Release", "Popular", "Top Singer"]
     
     var newReleasesAlbum = ["Music-Album-1", "Music-Album-2","Music-Album-3","Music-Album-4","Music-Album-5"]
@@ -26,7 +28,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     var topSingers = ["singer-1","singer-2","singer-3","singer-4","singer-5"]
     var topSingerNames = ["Shakira", "Arijit Singh", "Shreya Ghosal", "Alan Walker", "Eminem"]
     
-    
+    // MARK: - View Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -42,7 +44,14 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         gradientLayer.frame = view.layer.bounds
     }
     
+    // MARK: - Table View Delegates
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        
+        /*
+         Custom Header View For Section,
+         As Section Title will be changed only
+         */
+        
         if section > 0{
             let headerView = UIView.init(frame: CGRect.init(x: 0, y: 0, width: tableView.frame.width, height: 40))
             
@@ -60,6 +69,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
     }
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        
+        /* No Section Height For First Cell */
         if section > 0 {
             return 40
         }else {
@@ -72,10 +83,18 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        // Each section will have one row
         1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        /*
+         
+         Here, AlbumTableViewCell will be Common For New Release and Popular Album
+         sections.
+         
+         */
         
         let index = indexPath.section
         
@@ -83,13 +102,13 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             let cell = HomeTableView.dequeueReusableCell(withIdentifier: "SearchTableViewCell", for: indexPath) as! SearchTableViewCell
             return cell
         }else if index == 1{
-            let cell = HomeTableView.dequeueReusableCell(withIdentifier: "NewReleaseTableViewCell", for: indexPath) as! NewReleaseTableViewCell
+            let cell = HomeTableView.dequeueReusableCell(withIdentifier: "AlbumTableViewCell", for: indexPath) as! AlbumTableViewCell
             cell.albums = newReleasesAlbum
             cell.albumNames = newReleaseAlbumName
             cell.albumSingers = newReleaseAlbumSingers
             return cell
         }else if index == 2{
-            let cell = HomeTableView.dequeueReusableCell(withIdentifier: "NewReleaseTableViewCell", for: indexPath) as! NewReleaseTableViewCell
+            let cell = HomeTableView.dequeueReusableCell(withIdentifier: "AlbumTableViewCell", for: indexPath) as! AlbumTableViewCell
             cell.albums = popularAlbum
             cell.albumNames = popularAlbumName
             cell.albumSingers = popularAlbumSingers
@@ -104,6 +123,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
+        // Height for the Cells
         let index = indexPath.section
         if index == 0{
             return 62
