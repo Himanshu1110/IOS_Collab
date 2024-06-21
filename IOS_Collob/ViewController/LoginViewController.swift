@@ -54,7 +54,7 @@ class LoginViewController: UIViewController {
         let userEnteredEmail = tfUserEmail.text!.lowercased()
         let userEnteredPassword = tfUserPassword.text!
         
-        if  userEnteredEmail.isValidEmail() && userEnteredPassword.isValidPassword(){
+//        if  userEnteredEmail.isValidEmail() && userEnteredPassword.isValidPassword(){
             
             if  (userEnteredEmail == UserDefaults.standard.string(forKey: "userEmail")) && (userEnteredPassword == UserDefaults.standard.string(forKey: "userPassword")){
                 
@@ -65,11 +65,13 @@ class LoginViewController: UIViewController {
                 showAlertBox(title: "Invalid Credentials, Wrong email or password", message: "Please enter valid credentials to login.")
             }
             
-        }else if userEnteredEmail.isValidEmail() == false {
-            showAlertBox(title: "Invalid Email", message: "Please enter valid email to proceed.")
-        }else if userEnteredPassword.isValidPassword() == false {
-            showAlertBox(title: "Invalid Password", message: "Please enter a password equal or more than 4 letters or digits.")
-        }
+//        }
+//
+//        else if userEnteredEmail.isValidEmail() == false {
+//            showAlertBox(title: "Invalid Email", message: "Please enter valid email to proceed.")
+//        }else if userEnteredPassword.isValidPassword() == false {
+//            showAlertBox(title: "Invalid Password", message: "Please enter a password equal or more than 4 letters or digits.")
+//        }
         
         
     }

@@ -25,6 +25,10 @@ class SignupViewController: UIViewController {
 
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name:UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name:UIResponder.keyboardWillHideNotification, object: nil)
+        
+        let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(respondToSwipeGesture))
+        swipeRight.direction = .right
+        self.view.addGestureRecognizer(swipeRight)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -39,9 +43,9 @@ class SignupViewController: UIViewController {
     
     
     @IBAction func onRegisterBtnPressed(_ sender: Any) {
-        let userEnteredName = tfUsername.text!
-        let userEnteredEmail = tfUserEmail.text!.lowercased()
-        let userEnteredPassword = tfUserPassword.text!
+        let userEnteredName = tfUsername.text!.trimmingCharacters(in: .whitespaces)
+        let userEnteredEmail = tfUserEmail.text!.trimmingCharacters(in: .whitespaces).lowercased()
+        let userEnteredPassword = tfUserPassword.text!.trimmingCharacters(in: .whitespaces)
         
         
         if userEnteredEmail.isValidEmail() && userEnteredPassword.isValidPassword() && userEnteredName.isValidUsername(){
@@ -79,6 +83,26 @@ class SignupViewController: UIViewController {
 
         let contentInset:UIEdgeInsets = UIEdgeInsets.zero
         scrollView.contentInset = contentInset
+    }
+    
+    @objc func respondToSwipeGesture(gesture: UIGestureRecognizer) {
+        
+        if let swipeGesture = gesture as? UISwipeGestureRecognizer {
+            
+            switch swipeGesture.direction {
+            case .right:
+                print("Swiped right")
+                self.navigationController?.popViewController(animated: true)
+            case .down:
+                print("Swiped down")
+            case .left:
+                print("Swiped left")
+            case .up:
+                print("Swiped up")
+            default:
+                break
+            }
+        }
     }
     
     // MARK: - All void methods
