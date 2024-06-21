@@ -6,12 +6,20 @@
 //
 
 import UIKit
+import SideMenu
 
-class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, MovetoScreen {
+class HomeViewController: UIViewController {
 
+    // MARK: - IB Outlets
     @IBOutlet weak var HomeTableView: UITableView!
+    @IBOutlet weak var viewSearch: UIView!
+    @IBOutlet weak var tfSearch: UITextField!
     
+    @IBOutlet weak var menuBtn: UIButton!
+    
+    // MARK: - Global Variables
     var gradientLayer: CAGradientLayer!
+    var menu: SideMenuNavigationController?
     
     // MARK: - All Static Data
     var sectionTitles = ["New Release", "Popular", "Top Singer"]
@@ -33,120 +41,41 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         HomeTableView.delegate = self
         HomeTableView.dataSource = self
+        HomeTableView.showsVerticalScrollIndicator = false
         
-        
+        setupUI()
+    
     }
     
     override func viewWillAppear(_ animated: Bool) {
         setGradientBackground(view: view)
-        self.navigationController?.isNavigationBarHidden = true
+
+      NotificationCenter.default.addObserver(self, selector: #selector(MoveToPreviousScreen), name: NSNotification.Name("LogoutUser"), object: nil) 
+      self.navigationController?.isNavigationBarHidden = true
+
     }
     
-    override func viewDidLayoutSubviews() {
-        gradientLayer.frame = view.layer.bounds
+    override func viewWillTransition(to size: CGSize, with coordinator: any UIViewControllerTransitionCoordinator) {
+        gradientLayer.frame = view.layer.frame
     }
     
-    // MARK: - Table View Delegates
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+//    override func viewDidLayoutSubviews() {
+//        gradientLayer.frame = view.layer.frame
+//    }
+    
+    // MARK: - IB Actions
+    @IBAction func actionMenuBtn(_ sender: Any) {
+        //MenuListController().delegatePop = self
+        menu = SideMenuNavigationController(rootViewController: MenuListController())
         
-        /*
-         Custom Header View For Section,
-         As Section Title will be changed only
-         */
-        
-        if section > 0{
-            let headerView = UIView.init(frame: CGRect.init(x: 0, y: 0, width: tableView.frame.width, height: 40))
-            
-            let label = UILabel()
-            label.frame = CGRect.init(x: 5, y: 5, width: headerView.frame.width-10, height: headerView.frame.height-10)
-            label.text = sectionTitles[section - 1]
-            label.font = .boldSystemFont(ofSize: 20)
-            label.textColor = .black
-        
-            headerView.addSubview(label)
-            
-            return headerView
-        }else {
-            return UIView()
-        }
-    }
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        
-        /* No Section Height For First Cell */
-        if section > 0 {
-            return 40
-        }else {
-            return 0
-        }
-    }
-        
-    func numberOfSections(in tableView: UITableView) -> Int {
-        4
+        menu?.setNavigationBarHidden(true, animated: false)
+        menu?.presentationStyle = .viewSlideOutMenuPartialOut
+        SideMenuManager.default.leftMenuNavigationController = menu
+        SideMenuManager.default.addPanGestureToPresent(toView: self.view)
+        present(menu!, animated: true, completion: nil)
     }
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // Each section will have one row
-        1
-    }
+
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        /*
-         
-         Here, AlbumTableViewCell will be Common For New Release and Popular Album
-         sections.
-         
-         */
-        
-        let index = indexPath.section
-        
-        if index == 0 {
-            let cell = HomeTableView.dequeueReusableCell(withIdentifier: "SearchTableViewCell", for: indexPath) as! SearchTableViewCell
-            return cell
-        }else if index == 1{
-            let cell = HomeTableView.dequeueReusableCell(withIdentifier: "AlbumTableViewCell", for: indexPath) as! AlbumTableViewCell
-            cell.delegate = self
-            cell.albums = newReleasesAlbum
-            cell.albumNames = newReleaseAlbumName
-            cell.albumSingers = newReleaseAlbumSingers
-            return cell
-        }else if index == 2{
-            let cell = HomeTableView.dequeueReusableCell(withIdentifier: "AlbumTableViewCell", for: indexPath) as! AlbumTableViewCell
-            cell.delegate = self
-            cell.albums = popularAlbum
-            cell.albumNames = popularAlbumName
-            cell.albumSingers = popularAlbumSingers
-            return cell
-        }else{
-            let cell = HomeTableView.dequeueReusableCell(withIdentifier: "TopSingerTableViewCell", for: indexPath) as! TopSingerTableViewCell
-            cell.singers = topSingers
-            cell.singerNames = topSingerNames
-            return cell
-        }
-    }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        
-        // Height for the Cells
-        let index = indexPath.section
-        if index == 0{
-            return 62
-        }else if index == 3{
-            return 143
-        }else{
-            return 160
-        }
-        
-    }
-        
-        
-    func MoveToDetailScreen(ImageName: String) {
-        let DetailsScreenObj = UIStoryboard(name: "DetailScreen", bundle: nibBundle).instantiateViewController(withIdentifier: "DetailsScreenVC") as! DetailsScreenVC
-        
-        DetailsScreenObj.imageCover = ImageName
-       DetailsScreenObj.hidesBottomBarWhenPushed = true
-        
-        self.navigationController?.pushViewController(DetailsScreenObj, animated: true)
-    }
 }
 
