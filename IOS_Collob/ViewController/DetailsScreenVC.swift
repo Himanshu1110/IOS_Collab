@@ -8,7 +8,8 @@
 import UIKit
 
 class DetailsScreenVC: UIViewController, UITableViewDataSource, UITableViewDelegate, PlayButton {
-    
+    let barButton = UIBarButtonItem()
+    @IBOutlet weak var lblLeadingConstraint: NSLayoutConstraint!
     var isPlayButtonClicked = false
     var imageCover = "Cover"
     var MusicArr = [
@@ -24,6 +25,12 @@ class DetailsScreenVC: UIViewController, UITableViewDataSource, UITableViewDeleg
         ["MusicName":"gettys burg 10","MusicURl":"https://www2.cs.uic.edu/~i101/SoundFiles/gettysburg10.wav"],
         ["MusicName":"Imperial March 60","MusicURl":"https://www2.cs.uic.edu/~i101/SoundFiles/ImperialMarch60.wav"]]
     @IBOutlet weak var tblMusicDetails: UITableView!
+    var flagLike = false
+    @IBOutlet weak var MaskedView: UIView!
+    @IBOutlet weak var imgMusicCover: UIImageView!
+        @IBOutlet weak var btnMenu: UIButton!
+        @IBOutlet weak var btnDownload: UIButton!
+        @IBOutlet weak var btnLike: UIButton!
     
     //MARK: Application Delegate Methods
     
@@ -34,39 +41,79 @@ class DetailsScreenVC: UIViewController, UITableViewDataSource, UITableViewDeleg
         tblMusicDetails.dataSource = self
         tblMusicDetails.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 15, right: 0)
         
-        self.navigationController?.isNavigationBarHidden = true
-        
         let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(respondToSwipeGesture))
         swipeRight.direction = .right
         self.view.addGestureRecognizer(swipeRight)
     }
     override func viewWillAppear(_ animated: Bool) {
+        imgMusicCover.image = UIImage(named: imageCover)
+        MaskedView.layer.cornerRadius = 23
+        MaskedView.layer.masksToBounds = true
+        MaskedView.layer.maskedCorners = [.layerMinXMinYCorner,.layerMaxXMinYCorner]
+        tblMusicDetails.showsVerticalScrollIndicator = false
+        self.navigationController?.isNavigationBarHidden = false
+        setUpMenuButton(isScroll: true)
+        checkOrientation()
+        
     }
+    override func viewDidAppear(_ animated: Bool) {
+        print(tblMusicDetails.contentOffset,tblMusicDetails.contentSize)
+    }
+    override func viewWillTransition(to size: CGSize, with coordinator: any UIViewControllerTransitionCoordinator) {
+        checkOrientation()
+    }
+    override func viewDidDisappear(_ animated: Bool) {
+        if let indexPath = tblMusicDetails.indexPathForSelectedRow {
+            tblMusicDetails.deselectRow(at: indexPath, animated: true)
+        }
+    }
+
+    //MARK: IBAction Methods
+    
+    @IBAction func onCLickMenu(_ sender: Any) {
+    }
+    @IBAction func onClickBtnLike(_ sender: Any) {
+        flagLike.toggle()
+        if flagLike {
+            btnLike.setImage(UIImage(systemName: "hand.thumbsup.fill"), for: .normal)
+        }
+        else{
+            btnLike.setImage(UIImage(systemName: "hand.thumbsup"), for: .normal)
+        }
+    }
+    @IBAction func onClickDownload(_ sender: Any) {
+        btnDownload.tintColor = .blue
+
+    }
+ 
     
     //MARK: TableView Delegate Methods
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return MusicArr.count + 1
+        return MusicArr.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if indexPath.row == 0 {
-            let cell = tblMusicDetails.dequeueReusableCell(withIdentifier: "MusicDetailTableViewCell", for: indexPath) as! MusicDetailTableViewCell
-            cell.imgMusicCover.image = UIImage(named: imageCover)
-            return cell
-        }
-        else{
             let cell = tblMusicDetails.dequeueReusableCell(withIdentifier: "SongListTableViewCell", for: indexPath) as! SongListTableViewCell
-            cell.btnPlay.tag = indexPath.row - 1
-            cell.lblSongName.text = MusicArr[indexPath.row - 1]["MusicName"]
+            cell.btnPlay.tag = indexPath.row
+            cell.lblSongName.text = MusicArr[indexPath.row]["MusicName"]
             cell.delegate = self
-            cell.imgSong.image = UIImage(named: MusicArr[indexPath.row - 1]["MusicName"] ?? "")
+            cell.imgSong.image = UIImage(named: MusicArr[indexPath.row]["MusicName"] ?? "")
             return cell
-        }
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         isPlayButtonClicked = false
-        navigateToMusicPlayer(index: indexPath.row - 1)
+        navigateToMusicPlayer(index: indexPath.row)
+    }
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if (scrollView.contentOffset.y) > 1 {
+            self.navigationItem.title = "Music Details"
+            setUpMenuButton(isScroll: false)
+        }
+        else{
+            self.navigationItem.title = ""
+            setUpMenuButton(isScroll: true)
+        }
     }
     
     //MARK: User Defined Method
@@ -82,6 +129,32 @@ class DetailsScreenVC: UIViewController, UITableViewDataSource, UITableViewDeleg
             vc.isSongSelected = false
         }
         self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    func setUpMenuButton(isScroll : Bool){
+        
+        let icon = UIImage(systemName: "chevron.left")
+        let iconSize = CGRect(origin: CGPoint.zero, size: CGSize(width: 20, height: 20))
+        let iconButton = UIButton(frame: iconSize)
+        iconButton.tintColor = isScroll ? .white : .detailsDarkMode
+        iconButton.setBackgroundImage(icon, for: .normal)
+        let barButton = UIBarButtonItem(customView: iconButton)
+        iconButton.addTarget(self, action: #selector(btnBackClicked), for: .touchUpInside)
+
+        navigationItem.leftBarButtonItem = barButton
+       
+    }
+    
+    func checkOrientation(){
+        switch UIDevice.current.orientation {
+            
+        case .portrait, .portraitUpsideDown:
+            lblLeadingConstraint.constant = 20
+        case .landscapeLeft,.landscapeRight:
+            lblLeadingConstraint.constant = 83
+        @unknown default:
+            lblLeadingConstraint.constant = 25
+        }
     }
     
     //MARK: OBJC Function
@@ -107,9 +180,14 @@ class DetailsScreenVC: UIViewController, UITableViewDataSource, UITableViewDeleg
         }
     }
     
+    @objc func btnBackClicked() {
+        self.navigationController?.popViewController(animated: true)
+        
+    }
+    
     //MARK: Custom Deletgate Method
     
-    func btnClicked(sender: UIButton) {
+     func btnClicked(sender: UIButton) {
         isPlayButtonClicked = true
         navigateToMusicPlayer(index: (sender as AnyObject).tag)
     }

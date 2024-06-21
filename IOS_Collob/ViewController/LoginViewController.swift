@@ -50,8 +50,13 @@ class LoginViewController: UIViewController {
         
     }
     
+
     override func viewWillDisappear(_ animated: Bool) {
         NotificationCenter.default.removeObserver(self)
+    func moveToHomeScreen(){
+        let MainScreen = UIStoryboard(name: "HomeStoryboard", bundle: nil).instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController
+        
+        self.navigationController?.pushViewController(MainScreen, animated: true) 
     }
     
     

@@ -22,7 +22,33 @@ class CustomTabbarController: UITabBarController {
     override func viewDidLoad() {
             super.viewDidLoad()
 
-        let controller1 = UIStoryboard(name: "HomeStoryboard", bundle: nibBundle).instantiateViewController(identifier: "HomeViewController") as! HomeViewController
+        setTabbarItemsController()
+//        self.tabBar.addSubview(CenterBtn)
+        CenterBtn.frame = CGRect(x: Int(self.tabBar.frame.width)/2 - 30, y: 5, width: 60, height: 60)
+        setItemsConstraints()
+        
+        }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+       
+    }
+    override func viewWillTransition(to size: CGSize, with coordinator: any UIViewControllerTransitionCoordinator) {
+        CenterBtn.frame = CGRect(x: Int(size.width)/2 - 30, y: 5, width: 60, height: 60)
+        setItemsConstraints()
+    }
+
+
+        // MARK: - Actions
+
+        @objc private func menuButtonAction(sender: UIButton) {
+            selectedIndex = 2
+        }
+
+    func setTabbarItemsController(){
+        let controller1 = UIViewController()
+//        let controller1 = UIStoryboard(name: "HomeStoryboard", bundle: nibBundle).instantiateViewController(identifier: "HomeViewController") as! HomeViewController
             controller1.tabBarItem = UITabBarItem(title: "", image: UIImage(systemName: "house"), tag: 1)
         controller1.tabBarItem.imageInsets = UIEdgeInsets(top: 26, left: 0, bottom: -6, right: 0)
             let nav1 = UINavigationController(rootViewController: controller1)
@@ -32,23 +58,14 @@ class CustomTabbarController: UITabBarController {
             let nav2 = UINavigationController(rootViewController: controller2)
             nav2.title = ""
 
-            let controller3 = UIStoryboard(name: "UserProfile", bundle: nibBundle).instantiateViewController(identifier: "UserProfileVC") as! UserProfileVC
+            let controller3 = UIViewController()
+//            let controller3 = UIStoryboard(name: "UserProfile", bundle: nibBundle).instantiateViewController(identifier: "UserProfileVC") as! UserProfileVC
             controller3.tabBarItem = UITabBarItem(title: "", image: UIImage(systemName: "person"), tag: 3)
         controller3.tabBarItem.imageInsets = UIEdgeInsets(top: 20, left: 0, bottom: 0, right: 0)
             let nav3 = UINavigationController(rootViewController: controller3)
-            
-
-
             viewControllers = [nav1, nav3]
-//        self.tabBar.addSubview(CenterBtn)
-        CenterBtn.frame = CGRect(x: Int(self.tabBar.frame.width)/2 - 30, y: 5, width: 60, height: 60)
-     
-        
-        }
-
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
+    }
+    func setItemsConstraints(){
         let buttons = tabBar.subviews.filter { String(describing: type(of: $0)) == "UITabBarButton" }
         buttons.forEach {
             $0.translatesAutoresizingMaskIntoConstraints = false
@@ -62,18 +79,5 @@ class CustomTabbarController: UITabBarController {
             
         }
     }
-    override func viewWillTransition(to size: CGSize, with coordinator: any UIViewControllerTransitionCoordinator) {
-        CenterBtn.frame = CGRect(x: Int(size.width)/2 - 30, y: 5, width: 60, height: 60)
-        
-    }
-
-
-        // MARK: - Actions
-
-        @objc private func menuButtonAction(sender: UIButton) {
-            selectedIndex = 2
-        }
-
- 
 
 }
