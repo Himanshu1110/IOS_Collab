@@ -6,13 +6,15 @@
 //
 
 import UIKit
+import GoogleSignIn
 
 class LoginViewController: UIViewController {
 
+    var showPassword = false
     
-    
+    @IBOutlet weak var googleBtn: UIButton!
+    @IBOutlet weak var passwordShowBtn: UIButton!
     @IBOutlet weak var scrollView: UIScrollView!
-    @IBOutlet var socialsViews: [UIView]!
     @IBOutlet weak var passwordView: UIView!
     @IBOutlet weak var emailView: UIView!
     @IBOutlet weak var tfUserPassword: UITextField!
@@ -21,9 +23,12 @@ class LoginViewController: UIViewController {
 //    MARK: - All View Lifecycle methods
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name:UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name:UIResponder.keyboardWillHideNotification, object: nil)
+        
+        tfUserPassword.delegate = self
+        tfUserEmail.delegate = self
+        
+        let tapGesutre = UITapGestureRecognizer(target:self,action:#selector(hideKeyboard))
+        self.view.addGestureRecognizer(tapGesutre)
         
         if UserDefaults.standard.bool(forKey: "IsUserLoggedIn"){
             moveToHomeScreen()
@@ -33,30 +38,37 @@ class LoginViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name:UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name:UIResponder.keyboardWillHideNotification, object: nil)
+        
         print("\nEmail :",UserDefaults.standard.string(forKey: "userEmail") ?? "","\nPassword :",UserDefaults.standard.string(forKey: "userPassword") ?? "")
         
-        
-        for socialView in socialsViews {
-            socialView.layer.cornerRadius = socialView.frame.height/2
-            socialView.clipsToBounds = true
-        }
+        showPassword = false
+        passwordShowBtn.setImage(UIImage(systemName: "eye.slash"), for: .normal)
+        tfUserPassword.isSecureTextEntry = true
+
         
     }
     
+
+    override func viewWillDisappear(_ animated: Bool) {
+        NotificationCenter.default.removeObserver(self)
     func moveToHomeScreen(){
-        let MainScreen = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "CustomTabbarController") as! CustomTabbarController
+        let MainScreen = UIStoryboard(name: "HomeStoryboard", bundle: nil).instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController
         
-        self.navigationController?.pushViewController(MainScreen, animated: true)
+        self.navigationController?.pushViewController(MainScreen, animated: true) 
     }
+    
     
 //  MARK: - All IBActions methods
     @IBAction func onLoginBtnPressed(_ sender: Any) {
         let userEnteredEmail = tfUserEmail.text!.lowercased()
         let userEnteredPassword = tfUserPassword.text!
-        
-        if  userEnteredEmail.isValidEmail() && userEnteredPassword.isValidPassword(){
             
             if  (userEnteredEmail == UserDefaults.standard.string(forKey: "userEmail")) && (userEnteredPassword == UserDefaults.standard.string(forKey: "userPassword")){
+                
+                tfUserEmail.text = ""
+                tfUserPassword.text = ""
                 
                 UserDefaults.standard.set(true, forKey: "IsUserLoggedIn")
                 moveToHomeScreen()
@@ -65,13 +77,6 @@ class LoginViewController: UIViewController {
                 showAlertBox(title: "Invalid Credentials, Wrong email or password", message: "Please enter valid credentials to login.")
             }
             
-        }else if userEnteredEmail.isValidEmail() == false {
-            showAlertBox(title: "Invalid Email", message: "Please enter valid email to proceed.")
-        }else if userEnteredPassword.isValidPassword() == false {
-            showAlertBox(title: "Invalid Password", message: "Please enter a password equal or more than 4 letters or digits.")
-        }
-        
-        
     }
     
     
@@ -81,6 +86,42 @@ class LoginViewController: UIViewController {
         navigationController?.pushViewController(signupScreen, animated: true)
     }
     
+    
+    @IBAction func onPasswordShowBtnPressed(_ sender: Any) {
+        if showPassword == false {
+            showPassword = true
+            tfUserPassword.isSecureTextEntry = false
+            passwordShowBtn.setImage(UIImage(systemName: "eye"), for: .normal)
+        }else{
+            showPassword = false
+            tfUserPassword.isSecureTextEntry = true
+            passwordShowBtn.setImage(UIImage(systemName: "eye.slash"), for: .normal)
+        }
+        
+    }
+    
+    
+    @IBAction func onGoogleBtnPressed(_ sender: Any) {
+        GIDSignIn.sharedInstance.signIn(withPresenting: self){ signInResult, error in
+
+            guard error == nil else { return }
+
+          // If sign in succeeded, display the app's main content View.
+            guard let signInResult = signInResult else { return }
+            let user = signInResult.user
+
+            let emailAddress = user.profile?.email
+            let fullName = user.profile?.name
+            let familyName = user.profile?.familyName
+            let profilePicUrl = user.profile?.imageURL(withDimension: 320)
+            
+            
+            print(fullName!,emailAddress!,familyName!,profilePicUrl!)
+
+            self.moveToHomeScreen()
+        }
+    }
+    
     @objc func keyboardWillShow(notification:NSNotification) {
 
         guard let userInfo = notification.userInfo else { return }
@@ -88,7 +129,7 @@ class LoginViewController: UIViewController {
         keyboardFrame = self.view.convert(keyboardFrame, from: nil)
 
         var contentInset:UIEdgeInsets = self.scrollView.contentInset
-        contentInset.bottom = keyboardFrame.size.height + 20
+        contentInset.bottom = 260 + 20
         scrollView.contentInset = contentInset
     }
 
@@ -99,10 +140,22 @@ class LoginViewController: UIViewController {
     }
     
     
+    @objc func hideKeyboard(){
+        self.view.endEditing(true)
+    }
+    
+//    MARK: All void methods
+    
     func showAlertBox(title:String, message:String) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
         alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
         self.present(alert, animated: true, completion: nil)
+    }
+    
+    func moveToHomeScreen(){
+        let MainScreen = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "CustomTabbarController") as! CustomTabbarController
+        
+        self.navigationController?.pushViewController(MainScreen, animated: true)
     }
     
 
@@ -134,4 +187,12 @@ extension String {
     }
     
     
+}
+
+extension LoginViewController:UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool
+        {
+            self.view.endEditing(true)
+            return true;
+        }
 }

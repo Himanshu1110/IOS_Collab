@@ -60,8 +60,10 @@ class MusicPlayerScreenVC: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     override func viewWillAppear(_ animated: Bool) {
+
         self.navigationController?.isNavigationBarHidden = false
         
+
         SetUI()
         //        SldMusicSlider.setThumbImage(UIImage(named: "thumb"), for: .normal)
     }
@@ -76,6 +78,7 @@ class MusicPlayerScreenVC: UIViewController, UITableViewDelegate, UITableViewDat
             btnPlayButton.setImage(UIImage(named: "pause"), for: UIControl.State.normal)
             isSongSelected = false
         }
+        setUpMenuButton()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -207,6 +210,7 @@ class MusicPlayerScreenVC: UIViewController, UITableViewDelegate, UITableViewDat
         
         SetAVPlayerForAudio(SelectedMusicIndex: SelectedMusicIndex)
     }
+
     
     @objc func sliderTapped(gestureRecognizer: UIGestureRecognizer) {
         //  print("A")
@@ -244,6 +248,7 @@ class MusicPlayerScreenVC: UIViewController, UITableViewDelegate, UITableViewDat
         {
             PlaySong()
         }
+
     }
     
     
@@ -343,6 +348,7 @@ class MusicPlayerScreenVC: UIViewController, UITableViewDelegate, UITableViewDat
         VwMusicListMainView.layer.masksToBounds = true
         
     }
+
     
     
     func PlaySong(){
@@ -353,5 +359,6 @@ class MusicPlayerScreenVC: UIViewController, UITableViewDelegate, UITableViewDat
     func PauseSong(){
         player!.pause()
         btnPlayButton.setImage(UIImage(named: "play"), for: UIControl.State.normal)
+
     }
 }
