@@ -39,8 +39,8 @@ class CustomTabbarController: UITabBarController {
             
 
 
-            viewControllers = [nav1, nav2, nav3]
-        self.tabBar.addSubview(CenterBtn)
+            viewControllers = [nav1, nav3]
+//        self.tabBar.addSubview(CenterBtn)
         CenterBtn.frame = CGRect(x: Int(self.tabBar.frame.width)/2 - 30, y: 5, width: 60, height: 60)
      
         

@@ -28,11 +28,16 @@ class DetailsScreenVC: UIViewController, UITableViewDataSource, UITableViewDeleg
     //MARK: Application Delegate Methods
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         tblMusicDetails.delegate = self
         tblMusicDetails.dataSource = self
         tblMusicDetails.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 15, right: 0)
+        
         self.navigationController?.isNavigationBarHidden = true
+        
+        let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(respondToSwipeGesture))
+        swipeRight.direction = .right
+        self.view.addGestureRecognizer(swipeRight)
     }
     override func viewWillAppear(_ animated: Bool) {
         NotificationCenter.default.addObserver(self, selector: #selector(SelectedSong(notification:)), name: Notification.Name("btnCLicked"), object: nil)
@@ -54,13 +59,14 @@ class DetailsScreenVC: UIViewController, UITableViewDataSource, UITableViewDeleg
             let cell = tblMusicDetails.dequeueReusableCell(withIdentifier: "SongListTableViewCell", for: indexPath) as! SongListTableViewCell
             cell.btnPlay.tag = indexPath.row - 1
             cell.lblSongName.text = MusicArr[indexPath.row - 1]["MusicName"]
+            cell.imgSong.image = UIImage(named: MusicArr[indexPath.row - 1]["MusicName"] ?? "")
             return cell
         }
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         navigateToMusicPlayer(index: indexPath.row - 1)
     }
-
+    
     //MARK: User Defined Method
     
     func navigateToMusicPlayer(index : Int){
@@ -76,7 +82,26 @@ class DetailsScreenVC: UIViewController, UITableViewDataSource, UITableViewDeleg
         var btnTag = notification.userInfo?["btnTag"] as? Int
         print(btnTag ?? 0 )
         navigateToMusicPlayer(index: btnTag ?? 0)
+    }
+    
+    
+    @objc func respondToSwipeGesture(gesture: UIGestureRecognizer) {
         
-        
+        if let swipeGesture = gesture as? UISwipeGestureRecognizer {
+            
+            switch swipeGesture.direction {
+            case .right:
+                print("Swiped right")
+                self.navigationController?.popViewController(animated: true)
+            case .down:
+                print("Swiped down")
+            case .left:
+                print("Swiped left")
+            case .up:
+                print("Swiped up")
+            default:
+                break
+            }
+        }
     }
 }

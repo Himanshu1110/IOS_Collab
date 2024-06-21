@@ -40,7 +40,7 @@ class SignupViewController: UIViewController {
     
     @IBAction func onRegisterBtnPressed(_ sender: Any) {
         let userEnteredName = tfUsername.text!
-        let userEnteredEmail = tfUserEmail.text!
+        let userEnteredEmail = tfUserEmail.text!.lowercased()
         let userEnteredPassword = tfUserPassword.text!
         
         

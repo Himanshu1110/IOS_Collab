@@ -33,6 +33,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         HomeTableView.delegate = self
         HomeTableView.dataSource = self
+        
+        self.navigationController?.isNavigationBarHidden = true
     }
     
     override func viewWillAppear(_ animated: Bool) {

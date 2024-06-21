@@ -25,12 +25,12 @@ class SongListTableViewCell: UITableViewCell {
         
     }
     
-    @IBAction func OnClickBtnPlay(_ sender: Any) {
-        
-        print((sender as AnyObject).tag ?? 0)
-        
-        NotificationCenter.default.post(name: Notification.Name("btnCLicked"), object: nil, userInfo: ["btnTag": (sender as AnyObject).tag ?? 0])
-        
-    }
+//    @IBAction func OnClickBtnPlay(_ sender: Any) {
+//        
+//        print((sender as AnyObject).tag ?? 0)
+//        
+//        NotificationCenter.default.post(name: Notification.Name("btnCLicked"), object: nil, userInfo: ["btnTag": (sender as AnyObject).tag ?? 0])
+//        
+//    }
     
 }

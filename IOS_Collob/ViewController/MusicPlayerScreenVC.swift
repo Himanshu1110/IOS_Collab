@@ -52,6 +52,7 @@ class MusicPlayerScreenVC: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        self.navigationController?.isNavigationBarHidden = true
         SetAVPlayerForAudio(SelectedMusicIndex: SelectedMusicIndex)
         SetUI()
 //        SldMusicSlider.setThumbImage(UIImage(named: "thumb"), for: .normal)

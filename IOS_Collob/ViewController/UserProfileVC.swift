@@ -33,6 +33,8 @@ class UserProfileVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
         tblUserProfile.delegate = self
         tblUserProfile.dataSource = self
         
+        self.navigationController?.isNavigationBarHidden = true
+        
     }
 
     
@@ -61,7 +63,9 @@ class UserProfileVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
         btnFollow.backgroundColor = #colorLiteral(red: 0.8784, green: 0.8863, blue: 0.3451, alpha: 1)
         btnFollow.tintColor = #colorLiteral(red: 0.1608, green: 0.1216, blue: 0.3176, alpha: 1)
     }
-    @IBAction func onClickBack(_ sender: Any) {
+    @IBAction func onClickLogout(_ sender: Any) {
+        UserDefaults.standard.set(false, forKey: "IsUserLoggedIn")
+        self.tabBarController?.navigationController?.popViewController(animated: true)
 //        self.navigationController?.popViewController(animated: true)
     }
     func setUserProfile(){

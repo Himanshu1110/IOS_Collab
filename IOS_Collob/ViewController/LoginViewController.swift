@@ -24,12 +24,17 @@ class LoginViewController: UIViewController {
 
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name:UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name:UIResponder.keyboardWillHideNotification, object: nil)
+        
+        if UserDefaults.standard.bool(forKey: "IsUserLoggedIn"){
+            moveToHomeScreen()
+        }
     }
     
     
     override func viewWillAppear(_ animated: Bool) {
         
         print("\nEmail :",UserDefaults.standard.string(forKey: "userEmail") ?? "","\nPassword :",UserDefaults.standard.string(forKey: "userPassword") ?? "")
+        
         
         for socialView in socialsViews {
             socialView.layer.cornerRadius = socialView.frame.height/2
@@ -46,13 +51,14 @@ class LoginViewController: UIViewController {
     
 //  MARK: - All IBActions methods
     @IBAction func onLoginBtnPressed(_ sender: Any) {
-        let userEnteredEmail = tfUserEmail.text!
+        let userEnteredEmail = tfUserEmail.text!.lowercased()
         let userEnteredPassword = tfUserPassword.text!
         
         if  userEnteredEmail.isValidEmail() && userEnteredPassword.isValidPassword(){
             
             if  (userEnteredEmail == UserDefaults.standard.string(forKey: "userEmail")) && (userEnteredPassword == UserDefaults.standard.string(forKey: "userPassword")){
                 
+                UserDefaults.standard.set(true, forKey: "IsUserLoggedIn")
                 moveToHomeScreen()
                 print("User Logged In !!!")
             }else{
