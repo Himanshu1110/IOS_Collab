@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7D241478235E060BA31BF4F8 /* Pods_IOS_Collob.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4D239250B1DA2D2B22FC5AD /* Pods_IOS_Collob.framework */; };
 		C30853B82C246BDC002AB3D0 /* OnboardingCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30853B72C246BDC002AB3D0 /* OnboardingCollectionViewCell.swift */; };
 		C30853BA2C246BF7002AB3D0 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30853B92C246BF7002AB3D0 /* LoginViewController.swift */; };
 		C30853BC2C246BFF002AB3D0 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30853BB2C246BFF002AB3D0 /* OnboardingViewController.swift */; };
@@ -25,8 +26,7 @@
 		C3216A972C24632A00A538F0 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3216A962C24632A00A538F0 /* HomeViewController.swift */; };
 		C3216A992C24633400A538F0 /* AlbumCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3216A982C24633400A538F0 /* AlbumCollectionViewCell.swift */; };
 		C3216A9B2C24633F00A538F0 /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3216A9A2C24633F00A538F0 /* SearchTableViewCell.swift */; };
-		C3216A9D2C24634400A538F0 /* TopSingerCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3216A9C2C24634400A538F0 /* TopSingerCollectionViewCell.swift */; };
-		C3216A9F2C24634900A538F0 /* TopSingerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3216A9E2C24634900A538F0 /* TopSingerTableViewCell.swift */; };
+		C33BB04F2C25A4190093593A /* MenuListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33BB04E2C25A4190093593A /* MenuListVC.swift */; };
 		C35548BD2C247CAA002AFD7F /* CustomTabbarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C35548BB2C247CAA002AFD7F /* CustomTabbarController.swift */; };
 		C35548BE2C247CAA002AFD7F /* CustomTabbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C35548BC2C247CAA002AFD7F /* CustomTabbar.swift */; };
 		C35548C02C247CBD002AFD7F /* DetailScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C35548BF2C247CBD002AFD7F /* DetailScreen.storyboard */; };
@@ -64,8 +64,7 @@
 		C3216A962C24632A00A538F0 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		C3216A982C24633400A538F0 /* AlbumCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlbumCollectionViewCell.swift; sourceTree = "<group>"; };
 		C3216A9A2C24633F00A538F0 /* SearchTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchTableViewCell.swift; sourceTree = "<group>"; };
-		C3216A9C2C24634400A538F0 /* TopSingerCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopSingerCollectionViewCell.swift; sourceTree = "<group>"; };
-		C3216A9E2C24634900A538F0 /* TopSingerTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopSingerTableViewCell.swift; sourceTree = "<group>"; };
+		C33BB04E2C25A4190093593A /* MenuListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuListVC.swift; sourceTree = "<group>"; };
 		C35548BB2C247CAA002AFD7F /* CustomTabbarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTabbarController.swift; sourceTree = "<group>"; };
 		C35548BC2C247CAA002AFD7F /* CustomTabbar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTabbar.swift; sourceTree = "<group>"; };
 		C35548BF2C247CBD002AFD7F /* DetailScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = DetailScreen.storyboard; sourceTree = "<group>"; };
@@ -84,6 +83,9 @@
 		C3FB5A3A2C245E03002F0F87 /* MusicPlayeScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MusicPlayeScreen.storyboard; sourceTree = "<group>"; };
 		C3FB5A3C2C245E0B002F0F87 /* MusicPlayerScreenVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MusicPlayerScreenVC.swift; sourceTree = "<group>"; };
 		C3FB5A3E2C245E0F002F0F87 /* MusicListTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MusicListTableCell.swift; sourceTree = "<group>"; };
+		C7191D6673492B7D61819CE5 /* Pods-IOS_Collob.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IOS_Collob.debug.xcconfig"; path = "Target Support Files/Pods-IOS_Collob/Pods-IOS_Collob.debug.xcconfig"; sourceTree = "<group>"; };
+		DEF0200C6298CEC83613953E /* Pods-IOS_Collob.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IOS_Collob.release.xcconfig"; path = "Target Support Files/Pods-IOS_Collob/Pods-IOS_Collob.release.xcconfig"; sourceTree = "<group>"; };
+		F4D239250B1DA2D2B22FC5AD /* Pods_IOS_Collob.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_IOS_Collob.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,12 +93,22 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7D241478235E060BA31BF4F8 /* Pods_IOS_Collob.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		76549769A3CC68C61BA25455 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				C7191D6673492B7D61819CE5 /* Pods-IOS_Collob.debug.xcconfig */,
+				DEF0200C6298CEC83613953E /* Pods-IOS_Collob.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		C30853C12C246C2E002AB3D0 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -112,7 +124,6 @@
 				C31B2E652C2472C400D520AE /* PopularSongsCvCell.swift */,
 				C30853B72C246BDC002AB3D0 /* OnboardingCollectionViewCell.swift */,
 				C3216A982C24633400A538F0 /* AlbumCollectionViewCell.swift */,
-				C3216A9C2C24634400A538F0 /* TopSingerCollectionViewCell.swift */,
 			);
 			path = CollectionViewCell;
 			sourceTree = "<group>";
@@ -139,6 +150,8 @@
 			children = (
 				C3D86CFF2C23E6B900F6D63A /* IOS_Collob */,
 				C3D86CFE2C23E6B900F6D63A /* Products */,
+				76549769A3CC68C61BA25455 /* Pods */,
+				E2CAB3E13711BD56E6572318 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -182,6 +195,7 @@
 				C30853BD2C246C06002AB3D0 /* SignupViewController.swift */,
 				C30853BB2C246BFF002AB3D0 /* OnboardingViewController.swift */,
 				C3216A962C24632A00A538F0 /* HomeViewController.swift */,
+				C33BB04E2C25A4190093593A /* MenuListVC.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -232,9 +246,16 @@
 				C3FB5A3E2C245E0F002F0F87 /* MusicListTableCell.swift */,
 				C3216A8F2C2462FE00A538F0 /* AlbumTableViewCell.swift */,
 				C3216A9A2C24633F00A538F0 /* SearchTableViewCell.swift */,
-				C3216A9E2C24634900A538F0 /* TopSingerTableViewCell.swift */,
 			);
 			path = TableViewCell;
+			sourceTree = "<group>";
+		};
+		E2CAB3E13711BD56E6572318 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F4D239250B1DA2D2B22FC5AD /* Pods_IOS_Collob.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -244,9 +265,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C3D86D142C23E6BA00F6D63A /* Build configuration list for PBXNativeTarget "IOS_Collob" */;
 			buildPhases = (
+				398F9D18E62A6BD1F8D068E8 /* [CP] Check Pods Manifest.lock */,
 				C3D86CF92C23E6B900F6D63A /* Sources */,
 				C3D86CFA2C23E6B900F6D63A /* Frameworks */,
 				C3D86CFB2C23E6B900F6D63A /* Resources */,
+				A1AD1D3B59A0D6DD6E5BE5D7 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -308,13 +331,54 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		398F9D18E62A6BD1F8D068E8 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-IOS_Collob-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A1AD1D3B59A0D6DD6E5BE5D7 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-IOS_Collob/Pods-IOS_Collob-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-IOS_Collob/Pods-IOS_Collob-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-IOS_Collob/Pods-IOS_Collob-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		C3D86CF92C23E6B900F6D63A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				C3D86D0B2C23E6B900F6D63A /* IOS_Collob.xcdatamodeld in Sources */,
-				C3216A9F2C24634900A538F0 /* TopSingerTableViewCell.swift in Sources */,
 				C3216A992C24633400A538F0 /* AlbumCollectionViewCell.swift in Sources */,
 				C30853BA2C246BF7002AB3D0 /* LoginViewController.swift in Sources */,
 				C3D86D052C23E6B900F6D63A /* ViewController.swift in Sources */,
@@ -327,11 +391,11 @@
 				C35548BD2C247CAA002AFD7F /* CustomTabbarController.swift in Sources */,
 				C35548C82C247CDE002AFD7F /* MusicDetailTableViewCell.swift in Sources */,
 				C31B2E622C24729000D520AE /* UserProfileLikedSongTblCell.swift in Sources */,
-				C3216A9D2C24634400A538F0 /* TopSingerCollectionViewCell.swift in Sources */,
 				C31B2E602C24728A00D520AE /* UserProfilePopularSongTblCell.swift in Sources */,
 				C3D86D012C23E6B900F6D63A /* AppDelegate.swift in Sources */,
 				C30853BE2C246C06002AB3D0 /* SignupViewController.swift in Sources */,
 				C35548C42C247CD5002AFD7F /* DetailsScreenVC.swift in Sources */,
+				C33BB04F2C25A4190093593A /* MenuListVC.swift in Sources */,
 				C30853BC2C246BFF002AB3D0 /* OnboardingViewController.swift in Sources */,
 				C3216A972C24632A00A538F0 /* HomeViewController.swift in Sources */,
 				C31B2E682C2472D100D520AE /* LikedSongCvCell.swift in Sources */,
@@ -395,7 +459,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -458,7 +522,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -479,6 +543,7 @@
 		};
 		C3D86D152C23E6BA00F6D63A /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C7191D6673492B7D61819CE5 /* Pods-IOS_Collob.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -507,6 +572,7 @@
 		};
 		C3D86D162C23E6BA00F6D63A /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DEF0200C6298CEC83613953E /* Pods-IOS_Collob.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
