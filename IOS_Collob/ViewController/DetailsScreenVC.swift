@@ -7,9 +7,9 @@
 
 import UIKit
 
-class DetailsScreenVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class DetailsScreenVC: UIViewController, UITableViewDataSource, UITableViewDelegate, PlayButton {
     
-    
+    var isPlayButtonClicked = false
     var imageCover = "Cover"
     var MusicArr = [
         ["MusicName":"Pink Panther 60","MusicURl":"https://www2.cs.uic.edu/~i101/SoundFiles/PinkPanther60.wav"],
@@ -26,6 +26,7 @@ class DetailsScreenVC: UIViewController, UITableViewDataSource, UITableViewDeleg
     @IBOutlet weak var tblMusicDetails: UITableView!
     
     //MARK: Application Delegate Methods
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -40,7 +41,6 @@ class DetailsScreenVC: UIViewController, UITableViewDataSource, UITableViewDeleg
         self.view.addGestureRecognizer(swipeRight)
     }
     override func viewWillAppear(_ animated: Bool) {
-        NotificationCenter.default.addObserver(self, selector: #selector(SelectedSong(notification:)), name: Notification.Name("btnCLicked"), object: nil)
     }
     
     //MARK: TableView Delegate Methods
@@ -59,11 +59,13 @@ class DetailsScreenVC: UIViewController, UITableViewDataSource, UITableViewDeleg
             let cell = tblMusicDetails.dequeueReusableCell(withIdentifier: "SongListTableViewCell", for: indexPath) as! SongListTableViewCell
             cell.btnPlay.tag = indexPath.row - 1
             cell.lblSongName.text = MusicArr[indexPath.row - 1]["MusicName"]
+            cell.delegate = self
             cell.imgSong.image = UIImage(named: MusicArr[indexPath.row - 1]["MusicName"] ?? "")
             return cell
         }
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        isPlayButtonClicked = false
         navigateToMusicPlayer(index: indexPath.row - 1)
     }
     
@@ -73,16 +75,16 @@ class DetailsScreenVC: UIViewController, UITableViewDataSource, UITableViewDeleg
         let vc = UIStoryboard(name: "MusicPlayeScreen", bundle: nil).instantiateViewController(withIdentifier: "MusicPlayerScreenVC") as! MusicPlayerScreenVC
         print(vc)
         vc.SelectedMusicIndex = index
+        if isPlayButtonClicked {
+            vc.isSongSelected = true
+        }
+        else{
+            vc.isSongSelected = false
+        }
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
     //MARK: OBJC Function
-    
-    @objc func SelectedSong(notification : Notification){
-        var btnTag = notification.userInfo?["btnTag"] as? Int
-        print(btnTag ?? 0 )
-        navigateToMusicPlayer(index: btnTag ?? 0)
-    }
     
     
     @objc func respondToSwipeGesture(gesture: UIGestureRecognizer) {
@@ -103,5 +105,12 @@ class DetailsScreenVC: UIViewController, UITableViewDataSource, UITableViewDeleg
                 break
             }
         }
+    }
+    
+    //MARK: Custom Deletgate Method
+    
+    func btnClicked(sender: UIButton) {
+        isPlayButtonClicked = true
+        navigateToMusicPlayer(index: (sender as AnyObject).tag)
     }
 }

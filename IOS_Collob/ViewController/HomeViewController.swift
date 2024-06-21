@@ -144,6 +144,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         let DetailsScreenObj = UIStoryboard(name: "DetailScreen", bundle: nibBundle).instantiateViewController(withIdentifier: "DetailsScreenVC") as! DetailsScreenVC
         
         DetailsScreenObj.imageCover = ImageName
+       DetailsScreenObj.hidesBottomBarWhenPushed = true
         
         self.navigationController?.pushViewController(DetailsScreenObj, animated: true)
     }

@@ -13,7 +13,7 @@ class MusicPlayerScreenVC: UIViewController, UITableViewDelegate, UITableViewDat
     
     var player : AVPlayer?
     var playerItem : AVPlayerItem?
-    
+    var isSongSelected = false
     @IBOutlet weak var SldMusicSlider: UISlider!
     
     @IBOutlet weak var lblCurrentTime: UILabel!
@@ -56,8 +56,18 @@ class MusicPlayerScreenVC: UIViewController, UITableViewDelegate, UITableViewDat
         SetAVPlayerForAudio(SelectedMusicIndex: SelectedMusicIndex)
         SetUI()
 //        SldMusicSlider.setThumbImage(UIImage(named: "thumb"), for: .normal)
+//
+        if isSongSelected {
+            player!.play()
+            btnPlayButton.setImage(UIImage(named: "pause"), for: UIControl.State.normal)
+            isSongSelected = false
+        }
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        player!.pause()
+        btnPlayButton.setImage(UIImage(named: "play"), for: UIControl.State.normal)
+    }
     // MARK: - All IBActions
     
     @IBAction func OnClickPlayAndPause(_ sender: Any) {
