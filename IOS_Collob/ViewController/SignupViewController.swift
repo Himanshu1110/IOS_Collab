@@ -9,12 +9,11 @@ import UIKit
 
 class SignupViewController: UIViewController {
 
+    var showPassword = false
     
+    @IBOutlet weak var passwordShowBtn: UIButton!
     @IBOutlet var socialsViews: [UIView]!
-    
-    
     @IBOutlet weak var scrollView: UIScrollView!
-    
     @IBOutlet weak var tfUserPassword: UITextField!
     @IBOutlet weak var tfUserEmail: UITextField!
     @IBOutlet weak var tfUsername: UITextField!
@@ -26,8 +25,6 @@ class SignupViewController: UIViewController {
         tfUserPassword.delegate = self
         tfUserEmail.delegate = self
         tfUsername.delegate = self
-
-
         
         let tapGesutre = UITapGestureRecognizer(target:self,action:#selector(hideKeyboard))
         self.view.addGestureRecognizer(tapGesutre)
@@ -40,6 +37,10 @@ class SignupViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name:UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name:UIResponder.keyboardWillHideNotification, object: nil)
+        
+        showPassword = false
+        passwordShowBtn.setImage(UIImage(systemName: "eye.slash"), for: .normal)
+        tfUserPassword.isSecureTextEntry = true
         
         for socialView in socialsViews {
             socialView.layer.cornerRadius = socialView.frame.height/2
@@ -78,9 +79,20 @@ class SignupViewController: UIViewController {
         }
         
         
-        
-        
-        
+    }
+    
+    
+    
+    @IBAction func onPasswordShowBtnPressed(_ sender: Any) {
+        if showPassword == false {
+            showPassword = true
+            tfUserPassword.isSecureTextEntry = false
+            passwordShowBtn.setImage(UIImage(systemName: "eye"), for: .normal)
+        }else{
+            showPassword = false
+            tfUserPassword.isSecureTextEntry = true
+            passwordShowBtn.setImage(UIImage(systemName: "eye.slash"), for: .normal)
+        }
     }
     
 //    MARK: - All objc methods

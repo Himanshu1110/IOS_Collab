@@ -9,8 +9,9 @@ import UIKit
 
 class LoginViewController: UIViewController {
 
+    var showPassword = false
     
-    
+    @IBOutlet weak var passwordShowBtn: UIButton!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet var socialsViews: [UIView]!
     @IBOutlet weak var passwordView: UIView!
@@ -41,6 +42,9 @@ class LoginViewController: UIViewController {
         
         print("\nEmail :",UserDefaults.standard.string(forKey: "userEmail") ?? "","\nPassword :",UserDefaults.standard.string(forKey: "userPassword") ?? "")
         
+        showPassword = false
+        passwordShowBtn.setImage(UIImage(systemName: "eye.slash"), for: .normal)
+        tfUserPassword.isSecureTextEntry = true
         
         for socialView in socialsViews {
             socialView.layer.cornerRadius = socialView.frame.height/2
@@ -84,6 +88,20 @@ class LoginViewController: UIViewController {
         let signupScreen = self.storyboard?.instantiateViewController(withIdentifier: "SignupViewController") as! SignupViewController
         
         navigationController?.pushViewController(signupScreen, animated: true)
+    }
+    
+    
+    @IBAction func onPasswordShowBtnPressed(_ sender: Any) {
+        if showPassword == false {
+            showPassword = true
+            tfUserPassword.isSecureTextEntry = false
+            passwordShowBtn.setImage(UIImage(systemName: "eye"), for: .normal)
+        }else{
+            showPassword = false
+            tfUserPassword.isSecureTextEntry = true
+            passwordShowBtn.setImage(UIImage(systemName: "eye.slash"), for: .normal)
+        }
+        
     }
     
     @objc func keyboardWillShow(notification:NSNotification) {
