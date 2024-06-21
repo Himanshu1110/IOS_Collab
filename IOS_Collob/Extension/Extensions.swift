@@ -31,3 +31,4 @@ extension UIView {
         self.applyCornerRadius(radius: self.frame.width / 2)
     }
 }
+

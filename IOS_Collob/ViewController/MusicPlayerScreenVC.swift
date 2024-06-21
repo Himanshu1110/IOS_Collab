@@ -52,7 +52,7 @@ class MusicPlayerScreenVC: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        self.navigationController?.isNavigationBarHidden = true
+//        self.navigationController?.isNavigationBarHidden = true
         SetAVPlayerForAudio(SelectedMusicIndex: SelectedMusicIndex)
         SetUI()
 //        SldMusicSlider.setThumbImage(UIImage(named: "thumb"), for: .normal)
@@ -62,6 +62,7 @@ class MusicPlayerScreenVC: UIViewController, UITableViewDelegate, UITableViewDat
             btnPlayButton.setImage(UIImage(named: "pause"), for: UIControl.State.normal)
             isSongSelected = false
         }
+        setUpMenuButton()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -159,7 +160,10 @@ class MusicPlayerScreenVC: UIViewController, UITableViewDelegate, UITableViewDat
         btnPlayButton.setImage(UIImage(named: "play"), for: UIControl.State.normal)
         SetAVPlayerForAudio(SelectedMusicIndex: SelectedMusicIndex)
     }
-    
+    @objc func btnBackClicked() {
+        self.navigationController?.popViewController(animated: true)
+        
+    }
     
     
     // MARK: - All Defined Functions
@@ -249,5 +253,17 @@ class MusicPlayerScreenVC: UIViewController, UITableViewDelegate, UITableViewDat
         VwMusicListMainView.layer.cornerRadius = 10
         VwMusicListMainView.layer.masksToBounds = true
         
+    }
+    func setUpMenuButton(){
+        
+        let icon = UIImage(systemName: "chevron.left")
+        let iconSize = CGRect(origin: CGPoint.zero, size: CGSize(width: 20, height: 20))
+        let iconButton = UIButton(frame: iconSize)
+        iconButton.tintColor = .white
+        iconButton.setBackgroundImage(icon, for: .normal)
+        let barButton = UIBarButtonItem(customView: iconButton)
+        iconButton.addTarget(self, action: #selector(btnBackClicked), for: .touchUpInside)
+
+        navigationItem.leftBarButtonItem = barButton
     }
 }
