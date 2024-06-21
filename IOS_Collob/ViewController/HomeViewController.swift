@@ -47,6 +47,11 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     // MARK: - Table View Delegates
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        4
+    }
+    
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         
         /*
@@ -80,9 +85,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
     }
         
-    func numberOfSections(in tableView: UITableView) -> Int {
-        4
-    }
+
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // Each section will have one row
@@ -139,7 +142,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         
     }
         
-        
+    // MARK: - Call delegate to move to Details Screen here!
     func MoveToDetailScreen(ImageName: String) {
         let DetailsScreenObj = UIStoryboard(name: "DetailScreen", bundle: nibBundle).instantiateViewController(withIdentifier: "DetailsScreenVC") as! DetailsScreenVC
         
