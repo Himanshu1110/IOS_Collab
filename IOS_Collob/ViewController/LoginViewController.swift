@@ -44,7 +44,7 @@ class LoginViewController: UIViewController {
     }
     
     func moveToHomeScreen(){
-        let MainScreen = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "CustomTabbarController") as! CustomTabbarController
+        let MainScreen = UIStoryboard(name: "HomeStoryboard", bundle: nil).instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController
         
         self.navigationController?.pushViewController(MainScreen, animated: true)
     }

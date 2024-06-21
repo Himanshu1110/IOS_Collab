@@ -19,6 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="grouped" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="xLL-bi-EDR">
+
                                 <rect key="frame" x="0.0" y="103" width="393" height="715"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <view key="tableHeaderView" contentMode="scaleToFill" id="X58-om-DVv" userLabel="HeaderView">
@@ -27,6 +28,7 @@
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oXF-4A-7Uh">
                                             <rect key="frame" x="90" y="5" width="243" height="40"/>
+
                                             <subviews>
                                                 <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="BaD-E4-HjT">
                                                     <rect key="frame" x="20" y="0.0" width="223" height="40"/>
@@ -69,7 +71,9 @@
                                 </view>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="AlbumTableViewCell" rowHeight="160" id="dBW-vl-AFe" customClass="AlbumTableViewCell" customModule="IOS_Collob" customModuleProvider="target">
+
                                         <rect key="frame" x="0.0" y="105.33333206176758" width="393" height="160"/>
+
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="dBW-vl-AFe" id="ZvE-Ce-ii4">
                                             <rect key="frame" x="0.0" y="0.0" width="393" height="160"/>
@@ -149,7 +153,80 @@
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <connections>
+
                                             <outlet property="AlbumCollectionView" destination="ycR-SC-r8q" id="RaC-63-gk5"/>
+
+                                            <outlet property="NewReleaseCollectionView" destination="ycR-SC-r8q" id="O4H-Ee-WRg"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="TopSingerTableViewCell" rowHeight="143" id="Raz-L1-fWw" userLabel="TopSingerCell" customClass="TopSingerTableViewCell" customModule="IOS_Collob" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="277.33333206176758" width="333" height="143"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Raz-L1-fWw" id="Z30-pQ-HGL">
+                                            <rect key="frame" x="0.0" y="0.0" width="333" height="143"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="eQV-Uv-G0p">
+                                                    <rect key="frame" x="0.0" y="0.0" width="333" height="143"/>
+                                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                    <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="7Wv-XP-DVc">
+                                                        <size key="itemSize" width="95" height="138"/>
+                                                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                    </collectionViewFlowLayout>
+                                                    <cells>
+                                                        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="TopSingerCollectionViewCell" id="odk-3o-Lzv" customClass="TopSingerCollectionViewCell" customModule="IOS_Collob" customModuleProvider="target">
+                                                            <rect key="frame" x="0.0" y="2.6666666666666665" width="95" height="138"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                            <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="5v6-BI-ano">
+                                                                <rect key="frame" x="0.0" y="0.0" width="95" height="138"/>
+                                                                <autoresizingMask key="autoresizingMask"/>
+                                                                <subviews>
+                                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Qq9-cA-YTK">
+                                                                        <rect key="frame" x="2.6666666666666643" y="8" width="90" height="90"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="height" constant="90" id="B0K-fJ-7jT"/>
+                                                                            <constraint firstAttribute="width" constant="90" id="Fxa-0P-0hm"/>
+                                                                        </constraints>
+                                                                    </imageView>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Singer Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zky-ol-Zxp">
+                                                                        <rect key="frame" x="0.0" y="106" width="95" height="21"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="height" constant="21" id="qpL-Ds-cYb"/>
+                                                                        </constraints>
+                                                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                                        <nil key="textColor"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                </subviews>
+                                                                <constraints>
+                                                                    <constraint firstItem="Qq9-cA-YTK" firstAttribute="centerX" secondItem="5v6-BI-ano" secondAttribute="centerX" id="0i1-R6-vGn"/>
+                                                                    <constraint firstItem="zky-ol-Zxp" firstAttribute="top" secondItem="Qq9-cA-YTK" secondAttribute="bottom" constant="8" symbolic="YES" id="FLc-wu-stz"/>
+                                                                    <constraint firstAttribute="trailing" secondItem="zky-ol-Zxp" secondAttribute="trailing" id="Jve-m2-0gE"/>
+                                                                    <constraint firstItem="zky-ol-Zxp" firstAttribute="leading" secondItem="5v6-BI-ano" secondAttribute="leading" id="ecI-JB-LSj"/>
+                                                                    <constraint firstItem="Qq9-cA-YTK" firstAttribute="top" secondItem="5v6-BI-ano" secondAttribute="top" constant="8" id="tQw-qQ-JuR"/>
+                                                                </constraints>
+                                                            </collectionViewCellContentView>
+                                                            <size key="customSize" width="95" height="138"/>
+                                                            <connections>
+                                                                <outlet property="imageSinger" destination="Qq9-cA-YTK" id="Ogc-oP-HSD"/>
+                                                                <outlet property="lbSingerName" destination="zky-ol-Zxp" id="kYC-kJ-He6"/>
+                                                            </connections>
+                                                        </collectionViewCell>
+                                                    </cells>
+                                                </collectionView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="eQV-Uv-G0p" secondAttribute="bottom" id="7tp-ob-Yn3"/>
+                                                <constraint firstItem="eQV-Uv-G0p" firstAttribute="leading" secondItem="Z30-pQ-HGL" secondAttribute="leading" id="Azj-Qg-o4p"/>
+                                                <constraint firstAttribute="trailing" secondItem="eQV-Uv-G0p" secondAttribute="trailing" id="Rp5-zz-uti"/>
+                                                <constraint firstItem="eQV-Uv-G0p" firstAttribute="top" secondItem="Z30-pQ-HGL" secondAttribute="top" id="WSY-mM-OqH"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="TopSingerCollectionView" destination="eQV-Uv-G0p" id="LWD-Y7-czG"/>
+
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>

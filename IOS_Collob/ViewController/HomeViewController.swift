@@ -44,13 +44,15 @@ class HomeViewController: UIViewController {
         HomeTableView.showsVerticalScrollIndicator = false
         
         setupUI()
-        
-        self.navigationController?.isNavigationBarHidden = true
-        NotificationCenter.default.addObserver(self, selector: #selector(MoveToPreviousScreen), name: NSNotification.Name("LogoutUser"), object: nil)
+    
     }
     
     override func viewWillAppear(_ animated: Bool) {
         setGradientBackground(view: view)
+
+      NotificationCenter.default.addObserver(self, selector: #selector(MoveToPreviousScreen), name: NSNotification.Name("LogoutUser"), object: nil) 
+      self.navigationController?.isNavigationBarHidden = true
+
     }
     
     override func viewWillTransition(to size: CGSize, with coordinator: any UIViewControllerTransitionCoordinator) {

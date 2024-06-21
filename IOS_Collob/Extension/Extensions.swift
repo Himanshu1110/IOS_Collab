@@ -181,3 +181,4 @@ extension UIView {
         self.layer.rasterizationScale = UIScreen.main.scale
     }
 }
+
