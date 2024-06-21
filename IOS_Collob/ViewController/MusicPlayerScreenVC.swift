@@ -23,11 +23,16 @@ class MusicPlayerScreenVC: UIViewController, UITableViewDelegate, UITableViewDat
     
     @IBOutlet weak var VwMusicListMainView: UIView!
     @IBOutlet weak var TvMusicListtableView: UITableView!
+    @IBOutlet weak var TableBgViewHeightConstraint: NSLayoutConstraint!
     
     @IBOutlet weak var btnPlayButton: UIButton!
+    @IBOutlet weak var btnNextButton: UIButton!
+    @IBOutlet weak var btnPreviousButton: UIButton!
     
     @IBOutlet weak var imgImageView: UIImageView!
     @IBOutlet weak var SongListViewHeightConstraint: NSLayoutConstraint!
+    
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     var SelectedMusicIndex = 0
     var MusicArr = [
@@ -48,15 +53,24 @@ class MusicPlayerScreenVC: UIViewController, UITableViewDelegate, UITableViewDat
         
         TvMusicListtableView.delegate = self
         TvMusicListtableView.dataSource = self
+        
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(sliderTapped(gestureRecognizer:)))
+        self.SldMusicSlider.addGestureRecognizer(tapGestureRecognizer)
         // Do any additional setup after loading the view.
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        self.navigationController?.isNavigationBarHidden = true
-        SetAVPlayerForAudio(SelectedMusicIndex: SelectedMusicIndex)
+        self.navigationController?.isNavigationBarHidden = false
+        
         SetUI()
-//        SldMusicSlider.setThumbImage(UIImage(named: "thumb"), for: .normal)
-//
+        //        SldMusicSlider.setThumbImage(UIImage(named: "thumb"), for: .normal)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        
+        
+        SetAVPlayerForAudio(SelectedMusicIndex: SelectedMusicIndex)
+        
         if isSongSelected {
             player!.play()
             btnPlayButton.setImage(UIImage(named: "pause"), for: UIControl.State.normal)
@@ -65,9 +79,29 @@ class MusicPlayerScreenVC: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        player!.pause()
-        btnPlayButton.setImage(UIImage(named: "play"), for: UIControl.State.normal)
+        PauseSong()
     }
+    
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        if traitCollection.userInterfaceStyle == .dark {
+            //                imageView.tintColor = .red
+            btnPlayButton.tintColor = .black
+            btnNextButton.tintColor = .black
+            btnPreviousButton.tintColor = .black
+            print("dark")
+        }
+        else {
+            print("white")
+            btnPlayButton.tintColor = .white
+            btnNextButton.tintColor = .white
+            btnPreviousButton.tintColor = .white
+            //                imageView.tintColor = .black
+        }
+    }
+    
+    
+    
     // MARK: - All IBActions
     
     @IBAction func OnClickPlayAndPause(_ sender: Any) {
@@ -78,18 +112,19 @@ class MusicPlayerScreenVC: UIViewController, UITableViewDelegate, UITableViewDat
         {
             player!.play()
             btnPlayButton.setImage(UIImage(named: "pause"), for: UIControl.State.normal)
+        
         } else {
-            player!.pause()
-            btnPlayButton.setImage(UIImage(named: "play"), for: UIControl.State.normal)
+            PauseSong()
+      
         }
     }
     
     @IBAction func OnClickNextSong(_ sender: Any) {
         if SelectedMusicIndex != MusicArr.count-1 {
             SelectedMusicIndex = SelectedMusicIndex + 1
+
             SetAVPlayerForAudio(SelectedMusicIndex: SelectedMusicIndex)
-            player?.play()
-            btnPlayButton.setImage(UIImage(named: "pause"), for: UIControl.State.normal)
+            PlaySong()
         }
         
     }
@@ -97,9 +132,9 @@ class MusicPlayerScreenVC: UIViewController, UITableViewDelegate, UITableViewDat
     @IBAction func OnClickPreviousSong(_ sender: Any) {
         if SelectedMusicIndex != 0 {
             SelectedMusicIndex = SelectedMusicIndex - 1
+            
             SetAVPlayerForAudio(SelectedMusicIndex: SelectedMusicIndex)
-            player?.play()
-            btnPlayButton.setImage(UIImage(named: "pause"), for: UIControl.State.normal)
+            PlaySong()
         }
     }
     
@@ -112,7 +147,7 @@ class MusicPlayerScreenVC: UIViewController, UITableViewDelegate, UITableViewDat
         
         if player!.rate == 0
         {
-            player?.play()
+            PlaySong()
         }
     }
     
@@ -135,31 +170,81 @@ class MusicPlayerScreenVC: UIViewController, UITableViewDelegate, UITableViewDat
         Cell.lblMusicName.text = MusicArr[indexPath.row]["MusicName"]
         Cell.imgMusicImage.image = UIImage(named: MusicArr[indexPath.row]["MusicName"] ?? "")
         Cell.imgMusicImage.layer.cornerRadius = 10
+        Cell.selectionStyle = .none
+        
+        if (indexPath.row == SelectedMusicIndex){
+            Cell.lblMusicName.textColor = .systemGreen
+        }else{
+            Cell.lblMusicName.textColor = .white
+        }
         
         return Cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        if indexPath.row != SelectedMusicIndex{
-            SelectedMusicIndex = indexPath.row
-            SetAVPlayerForAudio(SelectedMusicIndex: SelectedMusicIndex)
-        }
-        player?.play()
-        btnPlayButton.setImage(UIImage(named: "pause"), for: UIControl.State.normal)
-     
+        let Cell = TvMusicListtableView.cellForRow(at: indexPath) as! MusicListTableCell
         
+        Cell.containerView?.backgroundColor = .red
+        UIView.animate(withDuration: 0.5) { [self] in
+            Cell.containerView?.backgroundColor = .clear
+            if indexPath.row != SelectedMusicIndex{
+                SelectedMusicIndex = indexPath.row
+                DispatchQueue.main.async {
+                    
+                    self.SetAVPlayerForAudio(SelectedMusicIndex: self.SelectedMusicIndex)
+                    self.PlaySong()
+                }
+            }
+        }
     }
-    
     
     
     // MARK: - All Objc Functions
     
     @objc func finishedPlaying( _ myNotification:NSNotification) {
         btnPlayButton.setImage(UIImage(named: "play"), for: UIControl.State.normal)
+        
         SetAVPlayerForAudio(SelectedMusicIndex: SelectedMusicIndex)
     }
     
+    @objc func sliderTapped(gestureRecognizer: UIGestureRecognizer) {
+        //  print("A")
+        
+        var pointTapped: CGPoint = gestureRecognizer.location(in: self.view)
+        pointTapped.x -= 30  //Subtract left constraint (distance of the slider's origin from "self.view"
+        
+        let positionOfSlider: CGPoint = SldMusicSlider.frame.origin
+        let widthOfSlider: CGFloat = SldMusicSlider.frame.size.width
+        
+        //If tap is too near from the slider thumb, cancel
+        let thumbPosition = CGFloat((SldMusicSlider.value / SldMusicSlider.maximumValue)) * widthOfSlider
+        let dif = abs(pointTapped.x - thumbPosition)
+        let minDistance: CGFloat = 51.0  //You can calibrate this value, but I think this is the maximum distance that tap is recognized
+        if dif < minDistance {
+            print("tap too near")
+            return
+        }
+        
+        var newValue: CGFloat
+        if pointTapped.x < 10 {
+            newValue = 0  //Easier to set slider to 0
+        } else {
+            newValue = ((pointTapped.x - positionOfSlider.x) * CGFloat(SldMusicSlider.maximumValue) / widthOfSlider)
+        }
+        
+        SldMusicSlider.setValue(Float(newValue), animated: true)
+        
+        let seconds : Int64 = Int64(SldMusicSlider.value)
+        let targetTime:CMTime = CMTimeMake(value: seconds, timescale: 1)
+        
+        player!.seek(to: targetTime)
+        
+        if player!.rate == 0
+        {
+            PlaySong()
+        }
+    }
     
     
     // MARK: - All Defined Functions
@@ -192,6 +277,10 @@ class MusicPlayerScreenVC: UIViewController, UITableViewDelegate, UITableViewDat
         SldMusicSlider.value = 0
         //        self.Loader.hide()
         
+        TvMusicListtableView.reloadData()
+        
+        
+        
         //Notification Obeserver trigger when music end playing
         NotificationCenter.default.addObserver(self, selector: #selector(self.finishedPlaying(_:)), name: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: playerItem)
         
@@ -207,15 +296,16 @@ class MusicPlayerScreenVC: UIViewController, UITableViewDelegate, UITableViewDat
                 //                self.Loader.hide()
             }
             
-            
             let playbackLikelyToKeepUp = self.player?.currentItem?.isPlaybackLikelyToKeepUp
             if playbackLikelyToKeepUp == false{
                 print("IsBuffering")
+//                self.activityIndicator.startAnimating()
                 //                self.Loader.show(on: self.view)
                 
             } else {
                 //stop the activity indicator
                 print("Buffering completed")
+//                self.activityIndicator.stopAnimating()
                 //                self.Loader.hide()
             }
             
@@ -242,12 +332,26 @@ class MusicPlayerScreenVC: UIViewController, UITableViewDelegate, UITableViewDat
     
     func SetUI(){
         
+        print(TvMusicListtableView.frame.height)
+        
         SetBackgroundBlur(view: VwMusicListMainView)
+        TableBgViewHeightConstraint.constant = CGFloat(81*MusicArr.count)
         
         imgImageView.layer.cornerRadius = 10
         
         VwMusicListMainView.layer.cornerRadius = 10
         VwMusicListMainView.layer.masksToBounds = true
         
+    }
+    
+    
+    func PlaySong(){
+        player?.play()
+        btnPlayButton.setImage(UIImage(named: "pause"), for: UIControl.State.normal)
+    }
+    
+    func PauseSong(){
+        player!.pause()
+        btnPlayButton.setImage(UIImage(named: "play"), for: UIControl.State.normal)
     }
 }
