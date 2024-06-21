@@ -6,13 +6,14 @@
 //
 
 import UIKit
+import GoogleSignIn
 
 class SignupViewController: UIViewController {
 
     var showPassword = false
     
+    @IBOutlet weak var googleBtn: UIButton!
     @IBOutlet weak var passwordShowBtn: UIButton!
-    @IBOutlet var socialsViews: [UIView]!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var tfUserPassword: UITextField!
     @IBOutlet weak var tfUserEmail: UITextField!
@@ -42,10 +43,7 @@ class SignupViewController: UIViewController {
         passwordShowBtn.setImage(UIImage(systemName: "eye.slash"), for: .normal)
         tfUserPassword.isSecureTextEntry = true
         
-        for socialView in socialsViews {
-            socialView.layer.cornerRadius = socialView.frame.height/2
-            socialView.clipsToBounds = true
-        }
+        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -92,6 +90,28 @@ class SignupViewController: UIViewController {
             showPassword = false
             tfUserPassword.isSecureTextEntry = true
             passwordShowBtn.setImage(UIImage(systemName: "eye.slash"), for: .normal)
+        }
+    }
+    
+    
+    @IBAction func onGoogleBtnPressed(_ sender: Any) {
+        GIDSignIn.sharedInstance.signIn(withPresenting: self){ signInResult, error in
+
+            guard error == nil else { return }
+
+          // If sign in succeeded, display the app's main content View.
+            guard let signInResult = signInResult else { return }
+            let user = signInResult.user
+
+            let emailAddress = user.profile?.email
+            let fullName = user.profile?.name
+            let familyName = user.profile?.familyName
+            let profilePicUrl = user.profile?.imageURL(withDimension: 320)
+            
+            
+            print(fullName!,emailAddress!,familyName!,profilePicUrl!)
+
+            self.moveToHomeScreen()
         }
     }
     
@@ -146,8 +166,15 @@ class SignupViewController: UIViewController {
         self.present(alert, animated: true, completion: nil)
     }
     
+    func moveToHomeScreen(){
+        let MainScreen = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "CustomTabbarController") as! CustomTabbarController
+        
+        self.navigationController?.pushViewController(MainScreen, animated: true)
+    }
+    
 }
 
+// MARK: All Extension
 
 extension SignupViewController: UITextFieldDelegate {
     

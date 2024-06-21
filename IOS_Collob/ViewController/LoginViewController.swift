@@ -6,14 +6,15 @@
 //
 
 import UIKit
+import GoogleSignIn
 
 class LoginViewController: UIViewController {
 
     var showPassword = false
     
+    @IBOutlet weak var googleBtn: UIButton!
     @IBOutlet weak var passwordShowBtn: UIButton!
     @IBOutlet weak var scrollView: UIScrollView!
-    @IBOutlet var socialsViews: [UIView]!
     @IBOutlet weak var passwordView: UIView!
     @IBOutlet weak var emailView: UIView!
     @IBOutlet weak var tfUserPassword: UITextField!
@@ -45,11 +46,7 @@ class LoginViewController: UIViewController {
         showPassword = false
         passwordShowBtn.setImage(UIImage(systemName: "eye.slash"), for: .normal)
         tfUserPassword.isSecureTextEntry = true
-        
-        for socialView in socialsViews {
-            socialView.layer.cornerRadius = socialView.frame.height/2
-            socialView.clipsToBounds = true
-        }
+
         
     }
     
@@ -57,12 +54,6 @@ class LoginViewController: UIViewController {
         NotificationCenter.default.removeObserver(self)
     }
     
-    
-    func moveToHomeScreen(){
-        let MainScreen = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "CustomTabbarController") as! CustomTabbarController
-        
-        self.navigationController?.pushViewController(MainScreen, animated: true)
-    }
     
 //  MARK: - All IBActions methods
     @IBAction func onLoginBtnPressed(_ sender: Any) {
@@ -104,6 +95,28 @@ class LoginViewController: UIViewController {
         
     }
     
+    
+    @IBAction func onGoogleBtnPressed(_ sender: Any) {
+        GIDSignIn.sharedInstance.signIn(withPresenting: self){ signInResult, error in
+
+            guard error == nil else { return }
+
+          // If sign in succeeded, display the app's main content View.
+            guard let signInResult = signInResult else { return }
+            let user = signInResult.user
+
+            let emailAddress = user.profile?.email
+            let fullName = user.profile?.name
+            let familyName = user.profile?.familyName
+            let profilePicUrl = user.profile?.imageURL(withDimension: 320)
+            
+            
+            print(fullName!,emailAddress!,familyName!,profilePicUrl!)
+
+            self.moveToHomeScreen()
+        }
+    }
+    
     @objc func keyboardWillShow(notification:NSNotification) {
 
         guard let userInfo = notification.userInfo else { return }
@@ -126,11 +139,18 @@ class LoginViewController: UIViewController {
         self.view.endEditing(true)
     }
     
+//    MARK: All void methods
     
     func showAlertBox(title:String, message:String) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
         alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
         self.present(alert, animated: true, completion: nil)
+    }
+    
+    func moveToHomeScreen(){
+        let MainScreen = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "CustomTabbarController") as! CustomTabbarController
+        
+        self.navigationController?.pushViewController(MainScreen, animated: true)
     }
     
 
