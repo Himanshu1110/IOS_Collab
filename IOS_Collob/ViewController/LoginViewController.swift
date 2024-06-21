@@ -21,9 +21,12 @@ class LoginViewController: UIViewController {
 //    MARK: - All View Lifecycle methods
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name:UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name:UIResponder.keyboardWillHideNotification, object: nil)
+        
+        tfUserPassword.delegate = self
+        tfUserEmail.delegate = self
+        
+        let tapGesutre = UITapGestureRecognizer(target:self,action:#selector(hideKeyboard))
+        self.view.addGestureRecognizer(tapGesutre)
         
         if UserDefaults.standard.bool(forKey: "IsUserLoggedIn"){
             moveToHomeScreen()
@@ -32,6 +35,9 @@ class LoginViewController: UIViewController {
     
     
     override func viewWillAppear(_ animated: Bool) {
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name:UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name:UIResponder.keyboardWillHideNotification, object: nil)
         
         print("\nEmail :",UserDefaults.standard.string(forKey: "userEmail") ?? "","\nPassword :",UserDefaults.standard.string(forKey: "userPassword") ?? "")
         
@@ -43,6 +49,11 @@ class LoginViewController: UIViewController {
         
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
+    
     func moveToHomeScreen(){
         let MainScreen = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "CustomTabbarController") as! CustomTabbarController
         
@@ -53,10 +64,11 @@ class LoginViewController: UIViewController {
     @IBAction func onLoginBtnPressed(_ sender: Any) {
         let userEnteredEmail = tfUserEmail.text!.lowercased()
         let userEnteredPassword = tfUserPassword.text!
-        
-//        if  userEnteredEmail.isValidEmail() && userEnteredPassword.isValidPassword(){
             
             if  (userEnteredEmail == UserDefaults.standard.string(forKey: "userEmail")) && (userEnteredPassword == UserDefaults.standard.string(forKey: "userPassword")){
+                
+                tfUserEmail.text = ""
+                tfUserPassword.text = ""
                 
                 UserDefaults.standard.set(true, forKey: "IsUserLoggedIn")
                 moveToHomeScreen()
@@ -65,15 +77,6 @@ class LoginViewController: UIViewController {
                 showAlertBox(title: "Invalid Credentials, Wrong email or password", message: "Please enter valid credentials to login.")
             }
             
-//        }
-//
-//        else if userEnteredEmail.isValidEmail() == false {
-//            showAlertBox(title: "Invalid Email", message: "Please enter valid email to proceed.")
-//        }else if userEnteredPassword.isValidPassword() == false {
-//            showAlertBox(title: "Invalid Password", message: "Please enter a password equal or more than 4 letters or digits.")
-//        }
-        
-        
     }
     
     
@@ -90,7 +93,7 @@ class LoginViewController: UIViewController {
         keyboardFrame = self.view.convert(keyboardFrame, from: nil)
 
         var contentInset:UIEdgeInsets = self.scrollView.contentInset
-        contentInset.bottom = keyboardFrame.size.height + 20
+        contentInset.bottom = 260 + 20
         scrollView.contentInset = contentInset
     }
 
@@ -98,6 +101,11 @@ class LoginViewController: UIViewController {
 
         let contentInset:UIEdgeInsets = UIEdgeInsets.zero
         scrollView.contentInset = contentInset
+    }
+    
+    
+    @objc func hideKeyboard(){
+        self.view.endEditing(true)
     }
     
     
@@ -136,4 +144,12 @@ extension String {
     }
     
     
+}
+
+extension LoginViewController:UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool
+        {
+            self.view.endEditing(true)
+            return true;
+        }
 }

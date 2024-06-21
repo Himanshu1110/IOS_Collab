@@ -22,9 +22,15 @@ class SignupViewController: UIViewController {
 //    MARK: - All view's lifecycle methods
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        tfUserPassword.delegate = self
+        tfUserEmail.delegate = self
+        tfUsername.delegate = self
 
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name:UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name:UIResponder.keyboardWillHideNotification, object: nil)
+
+        
+        let tapGesutre = UITapGestureRecognizer(target:self,action:#selector(hideKeyboard))
+        self.view.addGestureRecognizer(tapGesutre)
         
         let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(respondToSwipeGesture))
         swipeRight.direction = .right
@@ -32,11 +38,17 @@ class SignupViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name:UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name:UIResponder.keyboardWillHideNotification, object: nil)
         
         for socialView in socialsViews {
             socialView.layer.cornerRadius = socialView.frame.height/2
             socialView.clipsToBounds = true
         }
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        NotificationCenter.default.removeObserver(self)
     }
     
 //    MARK: - All IBActions Methods
@@ -51,6 +63,11 @@ class SignupViewController: UIViewController {
         if userEnteredEmail.isValidEmail() && userEnteredPassword.isValidPassword() && userEnteredName.isValidUsername(){
             UserDefaults.standard.set(userEnteredEmail, forKey: "userEmail")
             UserDefaults.standard.set(userEnteredPassword, forKey: "userPassword")
+            
+            tfUsername.text  =  ""
+            tfUserEmail.text = ""
+            tfUserPassword.text = ""
+            
             self.navigationController?.popViewController(animated: true)
         }else if userEnteredName.isValidUsername() == false {
             showAlertBox(title: "Invalid Username", message: "Username should be more than 1 character.")
@@ -75,7 +92,7 @@ class SignupViewController: UIViewController {
         keyboardFrame = self.view.convert(keyboardFrame, from: nil)
 
         var contentInset:UIEdgeInsets = self.scrollView.contentInset
-        contentInset.bottom = keyboardFrame.size.height + 20
+        contentInset.bottom = 260 + 50
         scrollView.contentInset = contentInset
     }
 
@@ -105,6 +122,10 @@ class SignupViewController: UIViewController {
         }
     }
     
+    @objc func hideKeyboard(){
+        self.view.endEditing(true)
+    }
+    
     // MARK: - All void methods
     
     func showAlertBox(title:String, message:String) {
@@ -113,4 +134,15 @@ class SignupViewController: UIViewController {
         self.present(alert, animated: true, completion: nil)
     }
     
+}
+
+
+extension SignupViewController: UITextFieldDelegate {
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool
+        {
+            print("working")
+            self.view.endEditing(true)
+            return true;
+        }
 }
