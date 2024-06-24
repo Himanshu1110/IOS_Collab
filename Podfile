@@ -7,5 +7,6 @@ target 'IOS_Collob' do
 
   # Pods for IOS_Collob
     pod 'GoogleSignIn'
+    pod 'RSLoadingView'
 
 end
