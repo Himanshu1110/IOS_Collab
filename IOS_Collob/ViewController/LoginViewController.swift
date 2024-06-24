@@ -53,7 +53,7 @@ class LoginViewController: UIViewController {
 
     override func viewWillDisappear(_ animated: Bool) {
         NotificationCenter.default.removeObserver(self)
-        moveToHomeScreen()
+//        moveToHomeScreen()
     }
     
     

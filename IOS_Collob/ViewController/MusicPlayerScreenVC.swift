@@ -7,7 +7,7 @@
 
 import UIKit
 import AVFoundation
-
+import RSLoadingView
 
 class MusicPlayerScreenVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
@@ -33,6 +33,7 @@ class MusicPlayerScreenVC: UIViewController, UITableViewDelegate, UITableViewDat
     @IBOutlet weak var SongListViewHeightConstraint: NSLayoutConstraint!
     
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    var Loader = RSLoadingView()
     
     var SelectedMusicIndex = 0
     var MusicArr = [
@@ -60,10 +61,10 @@ class MusicPlayerScreenVC: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     override func viewWillAppear(_ animated: Bool) {
-
+        
         self.navigationController?.isNavigationBarHidden = false
         
-
+        
         SetUI()
         //        SldMusicSlider.setThumbImage(UIImage(named: "thumb"), for: .normal)
     }
@@ -113,19 +114,18 @@ class MusicPlayerScreenVC: UIViewController, UITableViewDelegate, UITableViewDat
         
         if player?.rate == 0
         {
-            player!.play()
-            btnPlayButton.setImage(UIImage(named: "pause"), for: UIControl.State.normal)
-        
+            PlaySong()
+//            btnPlayButton.isEnabled = false
         } else {
             PauseSong()
-      
         }
     }
     
     @IBAction func OnClickNextSong(_ sender: Any) {
+        btnNextButton.isEnabled = false
         if SelectedMusicIndex != MusicArr.count-1 {
             SelectedMusicIndex = SelectedMusicIndex + 1
-
+            
             SetAVPlayerForAudio(SelectedMusicIndex: SelectedMusicIndex)
             PlaySong()
         }
@@ -133,6 +133,7 @@ class MusicPlayerScreenVC: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     @IBAction func OnClickPreviousSong(_ sender: Any) {
+        btnPreviousButton.isEnabled = false
         if SelectedMusicIndex != 0 {
             SelectedMusicIndex = SelectedMusicIndex - 1
             
@@ -210,7 +211,7 @@ class MusicPlayerScreenVC: UIViewController, UITableViewDelegate, UITableViewDat
         
         SetAVPlayerForAudio(SelectedMusicIndex: SelectedMusicIndex)
     }
-
+    
     
     @objc func sliderTapped(gestureRecognizer: UIGestureRecognizer) {
         //  print("A")
@@ -248,7 +249,7 @@ class MusicPlayerScreenVC: UIViewController, UITableViewDelegate, UITableViewDat
         {
             PlaySong()
         }
-
+        
     }
     
     
@@ -283,8 +284,11 @@ class MusicPlayerScreenVC: UIViewController, UITableViewDelegate, UITableViewDat
         //        self.Loader.hide()
         
         TvMusicListtableView.reloadData()
+        self.Loader.hide()
         
-        
+        btnNextButton.isEnabled = true
+        btnPlayButton.isEnabled = true
+        btnPreviousButton.isEnabled = true
         
         //Notification Obeserver trigger when music end playing
         NotificationCenter.default.addObserver(self, selector: #selector(self.finishedPlaying(_:)), name: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: playerItem)
@@ -298,20 +302,20 @@ class MusicPlayerScreenVC: UIViewController, UITableViewDelegate, UITableViewDat
                 self.SldMusicSlider.value = Float ( time );
                 
                 self.lblCurrentTime.text = self.stringFromTimeInterval(interval: time)
-                //                self.Loader.hide()
+                self.Loader.hide()
             }
             
             let playbackLikelyToKeepUp = self.player?.currentItem?.isPlaybackLikelyToKeepUp
             if playbackLikelyToKeepUp == false{
                 print("IsBuffering")
-//                self.activityIndicator.startAnimating()
+                self.Loader.show(on: self.view)
                 //                self.Loader.show(on: self.view)
                 
             } else {
                 //stop the activity indicator
                 print("Buffering completed")
-//                self.activityIndicator.stopAnimating()
-                //                self.Loader.hide()
+                //                self.activityIndicator.stopAnimating()
+                self.Loader.hide()
             }
             
         }
@@ -348,7 +352,7 @@ class MusicPlayerScreenVC: UIViewController, UITableViewDelegate, UITableViewDat
         VwMusicListMainView.layer.masksToBounds = true
         
     }
-
+    
     
     
     func PlaySong(){
@@ -359,7 +363,7 @@ class MusicPlayerScreenVC: UIViewController, UITableViewDelegate, UITableViewDat
     func PauseSong(){
         player!.pause()
         btnPlayButton.setImage(UIImage(named: "play"), for: UIControl.State.normal)
-
+        
     }
     
     func setUpMenuButton(){
@@ -371,11 +375,11 @@ class MusicPlayerScreenVC: UIViewController, UITableViewDelegate, UITableViewDat
         iconButton.setBackgroundImage(icon, for: .normal)
         let barButton = UIBarButtonItem(customView: iconButton)
         iconButton.addTarget(self, action: #selector(btnBackClicked), for: .touchUpInside)
-
+        
         navigationItem.leftBarButtonItem = barButton
-       
+        
     }
-
+    
     @objc func btnBackClicked() {
         self.navigationController?.popViewController(animated: true)
         
