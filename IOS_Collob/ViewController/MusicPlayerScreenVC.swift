@@ -361,4 +361,23 @@ class MusicPlayerScreenVC: UIViewController, UITableViewDelegate, UITableViewDat
         btnPlayButton.setImage(UIImage(named: "play"), for: UIControl.State.normal)
 
     }
+    
+    func setUpMenuButton(){
+        
+        let icon = UIImage(systemName: "chevron.left")
+        let iconSize = CGRect(origin: CGPoint.zero, size: CGSize(width: 20, height: 20))
+        let iconButton = UIButton(frame: iconSize)
+        iconButton.tintColor = .systemBackground
+        iconButton.setBackgroundImage(icon, for: .normal)
+        let barButton = UIBarButtonItem(customView: iconButton)
+        iconButton.addTarget(self, action: #selector(btnBackClicked), for: .touchUpInside)
+
+        navigationItem.leftBarButtonItem = barButton
+       
+    }
+
+    @objc func btnBackClicked() {
+        self.navigationController?.popViewController(animated: true)
+        
+    }
 }

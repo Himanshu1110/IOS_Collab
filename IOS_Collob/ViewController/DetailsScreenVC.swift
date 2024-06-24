@@ -136,7 +136,7 @@ class DetailsScreenVC: UIViewController, UITableViewDataSource, UITableViewDeleg
         let icon = UIImage(systemName: "chevron.left")
         let iconSize = CGRect(origin: CGPoint.zero, size: CGSize(width: 20, height: 20))
         let iconButton = UIButton(frame: iconSize)
-        iconButton.tintColor = isScroll ? .white : .detailsDarkMode
+//        iconButton.tintColor = isScroll ? .white : .DetailsDarkMode
         iconButton.setBackgroundImage(icon, for: .normal)
         let barButton = UIBarButtonItem(customView: iconButton)
         iconButton.addTarget(self, action: #selector(btnBackClicked), for: .touchUpInside)

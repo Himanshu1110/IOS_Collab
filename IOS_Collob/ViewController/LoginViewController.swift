@@ -53,10 +53,7 @@ class LoginViewController: UIViewController {
 
     override func viewWillDisappear(_ animated: Bool) {
         NotificationCenter.default.removeObserver(self)
-    func moveToHomeScreen(){
-        let MainScreen = UIStoryboard(name: "HomeStoryboard", bundle: nil).instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController
-        
-        self.navigationController?.pushViewController(MainScreen, animated: true) 
+        moveToHomeScreen()
     }
     
     
@@ -152,12 +149,17 @@ class LoginViewController: UIViewController {
         self.present(alert, animated: true, completion: nil)
     }
     
+//    func moveToHomeScreen(){
+//        let MainScreen = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "CustomTabbarController") as! CustomTabbarController
+//
+//        self.navigationController?.pushViewController(MainScreen, animated: true)
+//    }
+    
     func moveToHomeScreen(){
-        let MainScreen = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "CustomTabbarController") as! CustomTabbarController
-        
+        let MainScreen = UIStoryboard(name: "HomeStoryboard", bundle: nil).instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController
+
         self.navigationController?.pushViewController(MainScreen, animated: true)
     }
-    
 
 }
 

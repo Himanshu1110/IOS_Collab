@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
-
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
-
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -107,7 +105,6 @@
                                                             <constraint firstAttribute="height" constant="80" id="zZt-mM-BFM"/>
                                                         </constraints>
                                                     </stackView>
-
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="UpNext" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZiU-9T-TmW">
                                                         <rect key="frame" x="10" y="418.33333333333331" width="353" height="24"/>
                                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
@@ -236,11 +233,6 @@
                                     <constraint firstAttribute="bottom" secondItem="g7b-e0-rYG" secondAttribute="bottom" id="ygP-Lt-RiY"/>
                                 </constraints>
                             </scrollView>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="X86-It-O87">
-                                <rect key="frame" x="186" y="450" width="50" height="50"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </activityIndicatorView>
-
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="kp0-FR-MSM"/>
                         <color key="backgroundColor" name="Background Color - Kaushal"/>
@@ -248,10 +240,8 @@
                             <constraint firstItem="kp0-FR-MSM" firstAttribute="bottom" secondItem="uLb-Ig-Gbr" secondAttribute="bottom" id="1cU-Gs-N2Y"/>
                             <constraint firstItem="uLb-Ig-Gbr" firstAttribute="leading" secondItem="kp0-FR-MSM" secondAttribute="leading" id="7YI-ot-vLq"/>
                             <constraint firstItem="kp0-FR-MSM" firstAttribute="trailing" secondItem="uLb-Ig-Gbr" secondAttribute="trailing" id="Bi6-tp-Itd"/>
-
                             <constraint firstItem="uLb-Ig-Gbr" firstAttribute="width" secondItem="kp0-FR-MSM" secondAttribute="width" id="bu2-aR-Bbd"/>
                             <constraint firstItem="uLb-Ig-Gbr" firstAttribute="top" secondItem="kp0-FR-MSM" secondAttribute="top" id="s8B-J1-ffh"/>
-
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="vV7-Fj-coC"/>
@@ -260,7 +250,6 @@
                         <outlet property="TableBgViewHeightConstraint" destination="Xjd-77-bgV" id="SDK-CR-Tah"/>
                         <outlet property="TvMusicListtableView" destination="94L-Q3-4Qm" id="ZCd-HF-cer"/>
                         <outlet property="VwMusicListMainView" destination="Ohs-W6-epJ" id="7PK-or-atN"/>
-                        <outlet property="activityIndicator" destination="X86-It-O87" id="hPB-ow-0qK"/>
                         <outlet property="btnNextButton" destination="c6g-Sf-XTl" id="yw3-gA-teP"/>
                         <outlet property="btnPlayButton" destination="JYP-Hd-BFb" id="ctE-mr-kI3"/>
                         <outlet property="btnPreviousButton" destination="LFr-OL-fdJ" id="gCl-ij-9iN"/>
@@ -299,12 +288,11 @@
     </scenes>
     <resources>
         <image name="album" width="243" height="207"/>
-
         <image name="next" width="32" height="32"/>
         <image name="play" width="64" height="64"/>
         <image name="previous" width="32" height="32"/>
         <namedColor name="Background Color - Kaushal">
-            <color red="0.082092590630000004" green="0.08747228235" blue="0.087524630130000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.082000002264976501" green="0.086999997496604919" blue="0.087999999523162842" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="secondarySystemGroupedBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
